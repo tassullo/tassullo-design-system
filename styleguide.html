@@ -1,0 +1,712 @@
+<title>Tassullo Design System</title>
+<style>
+  /* ── Chrome della guida: adatta al tema del lettore ─────────── */
+  :root {
+    --g-bg: #F3F4F6;
+    --g-surface: #FFFFFF;
+    --g-surface-2: #F5F5F5;
+    --g-border: #E5E7EB;
+    --g-ink: #111827;
+    --g-muted: #6B7280;
+    --g-hint: #9CA3AF;
+    --g-accent: #E8990C;
+    --g-accent-hover: #B45309;
+    --g-accent-light: #FEF3C7;
+    --g-dark: #1C1C1C;
+    --g-code-bg: #1C1C1C;
+    --g-code-ink: #E5E7EB;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --g-bg: #161616;
+      --g-surface: #1F1F1F;
+      --g-surface-2: #262626;
+      --g-border: #333333;
+      --g-ink: #E5E7EB;
+      --g-muted: #A8A8A8;
+      --g-hint: #777777;
+      --g-accent-light: rgba(232, 153, 12, 0.18);
+      --g-code-bg: #111111;
+    }
+  }
+  :root[data-theme="dark"] {
+    --g-bg: #161616;
+    --g-surface: #1F1F1F;
+    --g-surface-2: #262626;
+    --g-border: #333333;
+    --g-ink: #E5E7EB;
+    --g-muted: #A8A8A8;
+    --g-hint: #777777;
+    --g-accent-light: rgba(232, 153, 12, 0.18);
+    --g-code-bg: #111111;
+  }
+  :root[data-theme="light"] {
+    --g-bg: #F3F4F6;
+    --g-surface: #FFFFFF;
+    --g-surface-2: #F5F5F5;
+    --g-border: #E5E7EB;
+    --g-ink: #111827;
+    --g-muted: #6B7280;
+    --g-hint: #9CA3AF;
+    --g-accent-light: #FEF3C7;
+    --g-code-bg: #1C1C1C;
+  }
+
+  body {
+    background: var(--g-bg);
+    color: var(--g-ink);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px 80px; }
+  code, .mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.85em;
+  }
+
+  /* ── Header ─────────────────────────────────────────────────── */
+  header {
+    background: #1C1C1C;
+    color: #E5E7EB;
+    padding: 40px 24px 32px;
+    border-bottom: 3px solid #E8990C;
+  }
+  .header-inner { max-width: 1060px; margin: 0 auto; }
+  .header-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .header-logo {
+    width: 40px; height: 40px; background: #000; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 21px;
+  }
+  header h1 { margin: 0; font-size: 26px; font-weight: 700; color: #fff; text-wrap: balance; }
+  .header-sub { margin: 0; color: #A8A8A8; font-size: 14px; }
+  header p.lede { color: #A8A8A8; font-size: 14px; max-width: 62ch; margin: 10px 0 0; }
+  header p.lede strong { color: #E8990C; font-weight: 600; }
+
+  nav.toc {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--g-surface);
+    border-bottom: 1px solid var(--g-border);
+    padding: 0 24px;
+  }
+  .toc-inner {
+    max-width: 1060px; margin: 0 auto;
+    display: flex; gap: 4px; overflow-x: auto;
+  }
+  nav.toc a {
+    padding: 11px 12px; font-size: 13px; font-weight: 500;
+    color: var(--g-muted); text-decoration: none; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+  }
+  nav.toc a:hover { color: var(--g-ink); border-bottom-color: var(--g-accent); }
+  nav.toc a:focus-visible, button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--g-accent); outline-offset: 2px;
+  }
+
+  /* ── Sezioni ────────────────────────────────────────────────── */
+  section { margin-top: 52px; scroll-margin-top: 60px; }
+  h2 {
+    font-size: 20px; font-weight: 700; margin: 0 0 4px;
+    display: flex; align-items: baseline; gap: 10px; text-wrap: balance;
+  }
+  h2 .rule { flex: 1; height: 1px; background: var(--g-border); }
+  .sec-note { color: var(--g-muted); font-size: 14px; margin: 0 0 20px; max-width: 72ch; }
+  h3 {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--g-hint); margin: 26px 0 10px;
+  }
+
+  /* ── Swatch di colore ───────────────────────────────────────── */
+  .swatches {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+    gap: 10px;
+  }
+  .swatch {
+    background: var(--g-surface); border: 1px solid var(--g-border);
+    border-radius: 12px; overflow: hidden; cursor: pointer; padding: 0;
+    text-align: left; font-family: inherit; transition: border-color .15s, box-shadow .15s;
+  }
+  .swatch:hover { border-color: var(--g-accent); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .swatch .chip { height: 56px; }
+  .swatch .chip.hairline { box-shadow: inset 0 -1px 0 var(--g-border); }
+  .swatch .meta { padding: 8px 10px 10px; }
+  .swatch .name {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px; color: var(--g-ink); word-break: break-all; display: block;
+  }
+  .swatch .hex { font-size: 11px; color: var(--g-hint); display: block; margin-top: 2px; }
+  .swatch .use { font-size: 11px; color: var(--g-muted); display: block; margin-top: 4px; }
+
+  .copy-toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(8px);
+    background: #1C1C1C; color: #fff; font-size: 13px;
+    padding: 8px 16px; border-radius: 999px; opacity: 0;
+    transition: opacity .2s, transform .2s; pointer-events: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  }
+  .copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ── Tipografia ─────────────────────────────────────────────── */
+  .type-table { display: flex; flex-direction: column; }
+  .type-row {
+    display: grid; grid-template-columns: 150px 60px 1fr;
+    gap: 16px; align-items: baseline;
+    padding: 12px 0; border-bottom: 1px solid var(--g-border);
+  }
+  .type-row .tname { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--g-muted); }
+  .type-row .tsize { font-size: 12px; color: var(--g-hint); font-variant-numeric: tabular-nums; }
+  @media (max-width: 640px) {
+    .type-row { grid-template-columns: 1fr; gap: 2px; }
+  }
+
+  /* ── Forma: raggi, ombre, spazi ─────────────────────────────── */
+  .form-grid { display: flex; flex-wrap: wrap; gap: 14px; }
+  .form-item {
+    background: var(--g-surface); border: 1px solid var(--g-border);
+    border-radius: 12px; padding: 14px; min-width: 150px; flex: 1;
+  }
+  .form-item .demo {
+    height: 64px; background: var(--g-surface-2);
+    border: 1px solid var(--g-border); margin-bottom: 10px;
+  }
+  .form-item.shadow-item .demo { background: var(--g-surface); border: none; }
+  .form-item .fname { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; }
+  .form-item .fval { font-size: 11px; color: var(--g-hint); margin-top: 2px; }
+  .space-bar { background: #E8990C; height: 16px; border-radius: 3px; }
+  .space-row { display: flex; align-items: center; gap: 14px; padding: 6px 0; }
+  .space-row .fname { width: 110px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--g-muted); }
+  .space-row .fval { font-size: 12px; color: var(--g-hint); font-variant-numeric: tabular-nums; }
+
+  /* ── Componenti: demo + ricetta ─────────────────────────────── */
+  .demo-block {
+    background: var(--g-surface); border: 1px solid var(--g-border);
+    border-radius: 12px; margin-bottom: 14px; overflow: hidden;
+  }
+  .demo-stage {
+    padding: 24px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 12px, rgba(128,128,128,0.03) 12px 24px),
+      var(--g-bg);
+  }
+  .demo-stage.stacked { flex-direction: column; align-items: stretch; }
+  details.recipe { border-top: 1px solid var(--g-border); }
+  details.recipe summary {
+    padding: 9px 24px; font-size: 12px; font-weight: 600; color: var(--g-muted);
+    cursor: pointer; user-select: none; list-style: none;
+  }
+  details.recipe summary::before { content: "▸ "; color: var(--g-accent); }
+  details.recipe[open] summary::before { content: "▾ "; }
+  details.recipe summary:hover { color: var(--g-ink); }
+  details.recipe pre {
+    margin: 0; padding: 16px 24px; overflow-x: auto;
+    background: var(--g-code-bg); color: var(--g-code-ink);
+    font-size: 12px; line-height: 1.6;
+  }
+
+  /* ════════════════════════════════════════════════════════════
+     TOKEN TASSULLO — identici a theme.css.
+     I componenti demo qui sotto usano SOLO questi (namespace .tds
+     per non interferire col chrome della guida).
+     ════════════════════════════════════════════════════════════ */
+  .tds {
+    --color-accent: #E8990C; --color-accent-hover: #B45309;
+    --color-accent-text: #FFFFFF; --color-accent-light: #FEF3C7; --color-accent-border: #FDE68A;
+    --color-page-bg: #F3F4F6; --color-surface: #FFFFFF;
+    --color-surface-2: #EEEEEE; --color-surface-3: #F5F5F5;
+    --color-border: #E5E7EB; --color-text: #111827;
+    --color-text-muted: #6B7280; --color-text-hint: #9CA3AF;
+    --color-sidebar-bg: #1C1C1C; --color-sidebar-hover: #2A2A2A;
+    --color-sidebar-text: #A8A8A8; --color-sidebar-text-hi: #E5E7EB;
+    --color-success: #16A34A; --color-success-text: #2E7D32;
+    --color-success-bg: #F0FDF4; --color-success-border: #86EFAC;
+    --color-danger: #DC2626; --color-danger-hover: #B91C1C; --color-danger-text: #991B1B;
+    --color-danger-bg: #FEF2F2; --color-danger-border: #FCA5A5;
+    --color-warn-text: #92400E; --color-warn-bg: #FFFBEB; --color-warn-border: #FDE68A;
+    --color-info-text: #1A5276; --color-info-bg: #D6ECFB;
+    --radius-sm: 4px; --radius-md: 10px; --radius-lg: 12px; --radius-full: 999px;
+    --shadow-md: 0 2px 8px rgba(0,0,0,.06); --shadow-modal: 0 20px 60px rgba(0,0,0,.25);
+    --focus-ring: 0 0 0 3px var(--color-accent-light);
+    --transition-fast: 0.15s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    color: var(--color-text);
+  }
+
+  /* Bottoni */
+  .tds .btn {
+    border: none; border-radius: var(--radius-md); padding: 8px 16px;
+    font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer;
+    transition: background var(--transition-fast);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .tds .btn-primary { background: var(--color-accent); color: var(--color-accent-text); }
+  .tds .btn-primary:hover { background: var(--color-accent-hover); }
+  .tds .btn-secondary {
+    background: var(--color-surface); color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+  .tds .btn-secondary:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .tds .btn-danger { background: var(--color-danger); color: #fff; }
+  .tds .btn-danger:hover { background: var(--color-danger-hover); }
+  .tds .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .tds .btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+  /* Chip */
+  .tds .chip-el {
+    padding: 6px 12px; font-size: 13px; border: 1px solid var(--color-border);
+    border-radius: var(--radius-full); background: var(--color-surface);
+    color: var(--color-text); cursor: pointer; font-family: inherit;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+  }
+  .tds .chip-el:hover { border-color: var(--color-accent); }
+  .tds .chip-el.is-active {
+    background: var(--color-accent); border-color: var(--color-accent);
+    color: var(--color-accent-text);
+  }
+
+  /* Badge di stato */
+  .tds .badge {
+    display: inline-block; padding: 3px 9px; font-size: 12px; font-weight: 600;
+    border-radius: var(--radius-full);
+  }
+  .tds .badge-success { background: var(--color-success-bg); color: var(--color-success-text); border: 1px solid var(--color-success-border); }
+  .tds .badge-danger  { background: var(--color-danger-bg);  color: var(--color-danger-text);  border: 1px solid var(--color-danger-border); }
+  .tds .badge-warn    { background: var(--color-warn-bg);    color: var(--color-warn-text);    border: 1px solid var(--color-warn-border); }
+  .tds .badge-info    { background: var(--color-info-bg);    color: var(--color-info-text); }
+  .tds .badge-accent  { background: var(--color-accent-light); color: var(--color-accent-hover); border: 1px solid var(--color-accent-border); }
+
+  /* Card */
+  .tds .card {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); padding: 16px; max-width: 270px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    cursor: pointer;
+  }
+  .tds .card:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); }
+  .tds .card-code { font-size: 12px; font-weight: 600; color: var(--color-accent); margin-bottom: 4px; }
+  .tds .card-name { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
+  .tds .card-sub { font-size: 13px; color: var(--color-text-muted); margin-bottom: 8px; }
+  .tds .card-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--color-text-hint); margin-top: 8px; }
+
+  /* Input */
+  .tds .input {
+    width: 100%; max-width: 340px; padding: 10px 14px; font-size: 14px;
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    background: var(--color-surface); color: var(--color-text); font-family: inherit;
+  }
+  .tds .input::placeholder { color: var(--color-text-hint); }
+  .tds .input:focus { outline: 2px solid var(--color-accent); outline-offset: -1px; }
+  .tds .field-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+
+  /* Alert */
+  .tds .alert { padding: 12px 16px; border-radius: var(--radius-md); font-size: 14px; border: 1px solid; }
+  .tds .alert-danger  { background: var(--color-danger-bg);  border-color: var(--color-danger-border);  color: var(--color-danger-text); }
+  .tds .alert-warn    { background: var(--color-warn-bg);    border-color: var(--color-warn-border);    color: var(--color-warn-text); }
+  .tds .alert-success { background: var(--color-success-bg); border-color: var(--color-success-border); color: var(--color-success-text); }
+  .tds .alert-info    { background: var(--color-info-bg);    border-color: var(--color-info-bg);        color: var(--color-info-text); }
+
+  /* Sidebar demo */
+  .tds .sb {
+    width: 220px; background: var(--color-sidebar-bg); border-radius: var(--radius-lg);
+    padding: 14px 10px; display: flex; flex-direction: column; gap: 4px;
+  }
+  .tds .sb-brand { display: flex; align-items: center; gap: 10px; padding: 0 4px 10px; }
+  .tds .sb-logo {
+    width: 30px; height: 30px; background: #000; border-radius: 7px; color: #fff;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;
+  }
+  .tds .sb-name { font-size: 13px; font-weight: 600; color: #fff; }
+  .tds .sb-sub { font-size: 10px; color: #666; }
+  .tds .sb-cta {
+    background: var(--color-accent); color: #fff; border: none; border-radius: var(--radius-md);
+    padding: 7px 12px; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer;
+    margin-bottom: 6px; transition: background var(--transition-fast);
+  }
+  .tds .sb-cta:hover { background: var(--color-accent-hover); }
+  .tds .sb-item {
+    padding: 7px 12px; border-radius: var(--radius-md); font-size: 12px; font-weight: 500;
+    color: var(--color-sidebar-text); cursor: pointer;
+  }
+  .tds .sb-item:hover { background: var(--color-sidebar-hover); color: var(--color-sidebar-text-hi); }
+  .tds .sb-item.is-active { background: var(--color-sidebar-hover); color: var(--color-sidebar-text-hi); }
+
+  /* Tabella */
+  .tds .table { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--color-surface); border-radius: var(--radius-lg); overflow: hidden; }
+  .tds .table th {
+    text-align: left; padding: 9px 14px; font-size: 12px; font-weight: 600;
+    color: var(--color-text-muted); background: var(--color-surface-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .tds .table td { padding: 9px 14px; border-bottom: 1px solid var(--color-border); }
+  .tds .table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tds .table tr:last-child td { border-bottom: none; }
+  .tds .table tr:hover td { background: var(--color-surface-3); }
+  .table-scroll { overflow-x: auto; width: 100%; border: 1px solid var(--g-border); border-radius: 12px; }
+
+  /* Skeleton */
+  .tds .skel {
+    border-radius: var(--radius-md); height: 18px;
+    background: linear-gradient(90deg, var(--color-surface-2) 25%, var(--color-surface-3) 37%, var(--color-surface-2) 63%);
+    background-size: 400% 100%; animation: tds-shimmer 1.4s ease infinite;
+  }
+  @keyframes tds-shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+  @media (prefers-reduced-motion: reduce) { .tds .skel { animation: none; } }
+</style>
+
+<header>
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo">T</div>
+      <div>
+        <h1>Tassullo Design System</h1>
+        <p class="header-sub">Style guide di Studio Tassullo · v1 · luglio 2026</p>
+      </div>
+    </div>
+    <p class="lede">Sidebar antracite, superfici bianche su grigio freddo, un solo accento: <strong>l'ocra Tassullo</strong>. Tutti i valori vivono in <strong>frontend/src/styles/theme.css</strong> — copia quel file in una nuova app e importalo per primo: questa pagina documenta i token e le ricette dei componenti costruiti sopra.</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#palette">Palette</a>
+    <a href="#tipografia">Tipografia</a>
+    <a href="#forma">Forma & spazio</a>
+    <a href="#componenti">Componenti</a>
+    <a href="#uso">Come si usa</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section id="palette">
+    <h2>Palette <span class="rule"></span></h2>
+    <p class="sec-note">Clicca uno swatch per copiare il nome della variabile. I nomi sono semantici: dicono <em>a cosa serve</em> il colore, non che colore è — così un'altra app può ribrandizzare cambiando solo i token.</p>
+
+    <h3>Brand — ocra Tassullo</h3>
+    <div class="swatches">
+      <button class="swatch" data-var="--color-accent"><div class="chip" style="background:#E8990C"></div><span class="meta"><span class="name">--color-accent</span><span class="hex">#E8990C</span><span class="use">Azioni primarie, link, highlight</span></span></button>
+      <button class="swatch" data-var="--color-accent-hover"><div class="chip" style="background:#B45309"></div><span class="meta"><span class="name">--color-accent-hover</span><span class="hex">#B45309</span><span class="use">Hover e stato premuto</span></span></button>
+      <button class="swatch" data-var="--color-accent-light"><div class="chip hairline" style="background:#FEF3C7"></div><span class="meta"><span class="name">--color-accent-light</span><span class="hex">#FEF3C7</span><span class="use">Sfondi tenui, focus ring</span></span></button>
+      <button class="swatch" data-var="--color-accent-border"><div class="chip hairline" style="background:#FDE68A"></div><span class="meta"><span class="name">--color-accent-border</span><span class="hex">#FDE68A</span><span class="use">Bordi tenui accento</span></span></button>
+    </div>
+
+    <h3>Superfici & testo</h3>
+    <div class="swatches">
+      <button class="swatch" data-var="--color-page-bg"><div class="chip hairline" style="background:#F3F4F6"></div><span class="meta"><span class="name">--color-page-bg</span><span class="hex">#F3F4F6</span><span class="use">Sfondo pagina</span></span></button>
+      <button class="swatch" data-var="--color-surface"><div class="chip hairline" style="background:#FFFFFF"></div><span class="meta"><span class="name">--color-surface</span><span class="hex">#FFFFFF</span><span class="use">Card, pannelli, input</span></span></button>
+      <button class="swatch" data-var="--color-surface-3"><div class="chip hairline" style="background:#F5F5F5"></div><span class="meta"><span class="name">--color-surface-3</span><span class="hex">#F5F5F5</span><span class="use">Righe alternate, hover leggeri</span></span></button>
+      <button class="swatch" data-var="--color-border"><div class="chip hairline" style="background:#E5E7EB"></div><span class="meta"><span class="name">--color-border</span><span class="hex">#E5E7EB</span><span class="use">Bordi standard</span></span></button>
+      <button class="swatch" data-var="--color-text"><div class="chip" style="background:#111827"></div><span class="meta"><span class="name">--color-text</span><span class="hex">#111827</span><span class="use">Testo principale</span></span></button>
+      <button class="swatch" data-var="--color-text-muted"><div class="chip" style="background:#6B7280"></div><span class="meta"><span class="name">--color-text-muted</span><span class="hex">#6B7280</span><span class="use">Testo secondario</span></span></button>
+      <button class="swatch" data-var="--color-text-hint"><div class="chip" style="background:#9CA3AF"></div><span class="meta"><span class="name">--color-text-hint</span><span class="hex">#9CA3AF</span><span class="use">Placeholder, meta-info</span></span></button>
+    </div>
+
+    <h3>Sidebar — zona scura</h3>
+    <div class="swatches">
+      <button class="swatch" data-var="--color-sidebar-bg"><div class="chip" style="background:#1C1C1C"></div><span class="meta"><span class="name">--color-sidebar-bg</span><span class="hex">#1C1C1C</span><span class="use">Fondo sidebar</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-hover"><div class="chip" style="background:#2A2A2A"></div><span class="meta"><span class="name">--color-sidebar-hover</span><span class="hex">#2A2A2A</span><span class="use">Hover / voce attiva</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-text"><div class="chip" style="background:#A8A8A8"></div><span class="meta"><span class="name">--color-sidebar-text</span><span class="hex">#A8A8A8</span><span class="use">Voci di menu</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-text-hi"><div class="chip" style="background:#E5E7EB"></div><span class="meta"><span class="name">--color-sidebar-text-hi</span><span class="hex">#E5E7EB</span><span class="use">Voce evidenziata</span></span></button>
+    </div>
+
+    <h3>Stati semantici</h3>
+    <div class="swatches">
+      <button class="swatch" data-var="--color-success"><div class="chip" style="background:#16A34A"></div><span class="meta"><span class="name">--color-success</span><span class="hex">#16A34A</span><span class="use">Ok, confermato</span></span></button>
+      <button class="swatch" data-var="--color-success-bg"><div class="chip hairline" style="background:#F0FDF4"></div><span class="meta"><span class="name">--color-success-bg</span><span class="hex">#F0FDF4</span><span class="use">Sfondo successo</span></span></button>
+      <button class="swatch" data-var="--color-danger"><div class="chip" style="background:#DC2626"></div><span class="meta"><span class="name">--color-danger</span><span class="hex">#DC2626</span><span class="use">Errori, azioni distruttive</span></span></button>
+      <button class="swatch" data-var="--color-danger-bg"><div class="chip hairline" style="background:#FEF2F2"></div><span class="meta"><span class="name">--color-danger-bg</span><span class="hex">#FEF2F2</span><span class="use">Sfondo errore</span></span></button>
+      <button class="swatch" data-var="--color-warn-text"><div class="chip" style="background:#92400E"></div><span class="meta"><span class="name">--color-warn-text</span><span class="hex">#92400E</span><span class="use">Avvisi</span></span></button>
+      <button class="swatch" data-var="--color-warn-bg"><div class="chip hairline" style="background:#FFFBEB"></div><span class="meta"><span class="name">--color-warn-bg</span><span class="hex">#FFFBEB</span><span class="use">Sfondo avviso</span></span></button>
+      <button class="swatch" data-var="--color-info-text"><div class="chip" style="background:#1A5276"></div><span class="meta"><span class="name">--color-info-text</span><span class="hex">#1A5276</span><span class="use">Note informative</span></span></button>
+      <button class="swatch" data-var="--color-info-bg"><div class="chip hairline" style="background:#D6ECFB"></div><span class="meta"><span class="name">--color-info-bg</span><span class="hex">#D6ECFB</span><span class="use">Sfondo info</span></span></button>
+    </div>
+  </section>
+
+  <section id="tipografia">
+    <h2>Tipografia <span class="rule"></span></h2>
+    <p class="sec-note">Font di sistema (<code>-apple-system, 'Segoe UI', system-ui</code>): l'app è uno strumento di lavoro quotidiano e adotta il font della piattaforma. La gerarchia si costruisce con corpo e peso, non cambiando famiglia. Monospace solo per codici sistema e dati tabellari.</p>
+    <div class="type-table">
+      <div class="type-row"><span class="tname">--text-title</span><span class="tsize">26px</span><span style="font-size:26px;font-weight:700">Catalogo sistemi</span></div>
+      <div class="type-row"><span class="tname">--text-xl</span><span class="tsize">18px</span><span style="font-size:18px;font-weight:700">Composizione del sistema</span></div>
+      <div class="type-row"><span class="tname">--text-lg</span><span class="tsize">15px</span><span style="font-size:15px;font-weight:600">Biocalce Muratura M15</span></div>
+      <div class="type-row"><span class="tname">--text-base</span><span class="tsize">14px</span><span style="font-size:14px">Corpo standard: descrizioni, input, contenuti delle card e dei pannelli.</span></div>
+      <div class="type-row"><span class="tname">--text-md</span><span class="tsize">13px</span><span style="font-size:13px">Testi densi, chip di filtro, breadcrumb.</span></div>
+      <div class="type-row"><span class="tname">--text-sm</span><span class="tsize">12px</span><span style="font-size:12px;color:#9CA3AF">Meta-informazioni, badge, voci della sidebar.</span></div>
+    </div>
+  </section>
+
+  <section id="forma">
+    <h2>Forma & spazio <span class="rule"></span></h2>
+    <p class="sec-note">Tre raggi ricorrenti (badge 4 · controlli 10 · contenitori 12, pillole a 999), ombre leggere riservate a hover ed elementi sospesi, spaziatura su scala di 4&nbsp;px.</p>
+
+    <h3>Raggi</h3>
+    <div class="form-grid">
+      <div class="form-item"><div class="demo" style="border-radius:4px"></div><div class="fname">--radius-sm</div><div class="fval">4px · badge, tag</div></div>
+      <div class="form-item"><div class="demo" style="border-radius:10px"></div><div class="fname">--radius-md</div><div class="fval">10px · bottoni, input</div></div>
+      <div class="form-item"><div class="demo" style="border-radius:12px"></div><div class="fname">--radius-lg</div><div class="fval">12px · card, modali</div></div>
+      <div class="form-item"><div class="demo" style="border-radius:999px;height:32px;margin-top:32px"></div><div class="fname">--radius-full</div><div class="fval">999px · chip, pillole</div></div>
+    </div>
+
+    <h3>Ombre</h3>
+    <div class="form-grid">
+      <div class="form-item shadow-item"><div class="demo" style="border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)"></div><div class="fname">--shadow-sm</div><div class="fval">rilievo minimo</div></div>
+      <div class="form-item shadow-item"><div class="demo" style="border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06)"></div><div class="fname">--shadow-md</div><div class="fval">hover delle card</div></div>
+      <div class="form-item shadow-item"><div class="demo" style="border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.12)"></div><div class="fname">--shadow-lg</div><div class="fval">dropdown, popover</div></div>
+      <div class="form-item shadow-item"><div class="demo" style="border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.25)"></div><div class="fname">--shadow-modal</div><div class="fval">modali</div></div>
+    </div>
+
+    <h3>Spaziatura</h3>
+    <div>
+      <div class="space-row"><span class="fname">--space-1</span><div class="space-bar" style="width:4px"></div><span class="fval">4px</span></div>
+      <div class="space-row"><span class="fname">--space-2</span><div class="space-bar" style="width:8px"></div><span class="fval">8px</span></div>
+      <div class="space-row"><span class="fname">--space-3</span><div class="space-bar" style="width:12px"></div><span class="fval">12px</span></div>
+      <div class="space-row"><span class="fname">--space-4</span><div class="space-bar" style="width:16px"></div><span class="fval">16px</span></div>
+      <div class="space-row"><span class="fname">--space-5</span><div class="space-bar" style="width:24px"></div><span class="fval">24px</span></div>
+      <div class="space-row"><span class="fname">--space-6</span><div class="space-bar" style="width:32px"></div><span class="fval">32px</span></div>
+      <div class="space-row"><span class="fname">--space-page</span><div class="space-bar" style="width:200px"></div><span class="fval">32px 40px · padding pagina (max 1180px)</span></div>
+    </div>
+  </section>
+
+  <section id="componenti">
+    <h2>Componenti <span class="rule"></span></h2>
+    <p class="sec-note">Esempi vivi con la ricetta CSS da copiare: ogni snippet usa solo i token del tema, quindi funziona identico in qualunque app che importa <code>theme.css</code>.</p>
+
+    <h3>Bottoni</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds">
+        <button class="btn btn-primary">+ Nuova chat</button>
+        <button class="btn btn-secondary">Esporta XLSX</button>
+        <button class="btn btn-danger">Elimina</button>
+        <button class="btn btn-primary" disabled>Disabilitato</button>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.btn {
+  border: none; border-radius: var(--radius-md); padding: 8px 16px;
+  font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.btn-primary { background: var(--color-accent); color: var(--color-accent-text); }
+.btn-primary:hover { background: var(--color-accent-hover); }
+.btn-secondary {
+  background: var(--color-surface); color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.btn-secondary:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.btn-danger { background: var(--color-danger); color: #fff; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }</pre></details>
+    </div>
+
+    <h3>Chip di filtro</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds">
+        <button class="chip-el is-active">Tutti</button>
+        <button class="chip-el">Deumidificazione</button>
+        <button class="chip-el">Consolidamento</button>
+        <button class="chip-el">Finiture</button>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.chip {
+  padding: 6px 12px; font-size: 13px;
+  border: 1px solid var(--color-border); border-radius: var(--radius-full);
+  background: var(--color-surface); color: var(--color-text); cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.chip:hover { border-color: var(--color-accent); }
+.chip.is-active {
+  background: var(--color-accent); border-color: var(--color-accent);
+  color: var(--color-accent-text);
+}</pre></details>
+    </div>
+
+    <h3>Badge di stato</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds">
+        <span class="badge badge-success">Completato</span>
+        <span class="badge badge-warn">In revisione</span>
+        <span class="badge badge-danger">Errore</span>
+        <span class="badge badge-info">REV 02</span>
+        <span class="badge badge-accent">Beta</span>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.badge {
+  display: inline-block; padding: 3px 9px;
+  font-size: 12px; font-weight: 600; border-radius: var(--radius-full);
+}
+.badge-success { background: var(--color-success-bg); color: var(--color-success-text); border: 1px solid var(--color-success-border); }
+.badge-danger  { background: var(--color-danger-bg);  color: var(--color-danger-text);  border: 1px solid var(--color-danger-border); }
+.badge-warn    { background: var(--color-warn-bg);    color: var(--color-warn-text);    border: 1px solid var(--color-warn-border); }
+.badge-info    { background: var(--color-info-bg);    color: var(--color-info-text); }
+.badge-accent  { background: var(--color-accent-light); color: var(--color-accent-hover); border: 1px solid var(--color-accent-border); }</pre></details>
+    </div>
+
+    <h3>Card (pattern catalogo)</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds">
+        <div class="card">
+          <div class="card-code">ST042</div>
+          <div class="card-name">Risanamento muratura umida</div>
+          <div class="card-sub">Variante intonaco macroporoso</div>
+          <div class="card-meta"><span>6 famiglie</span><span>Rev 03</span></div>
+        </div>
+        <div class="card">
+          <div class="card-code">ST118</div>
+          <div class="card-name">Consolidamento FRCM</div>
+          <div class="card-sub">Rete in basalto + matrice</div>
+          <div class="card-meta"><span>4 famiglie</span><span>Rev 01</span></div>
+        </div>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: 16px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.card:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); }
+.card-code { font-size: 12px; font-weight: 600; color: var(--color-accent); }
+.card-name { font-weight: 600; font-size: 15px; }
+.card-sub  { font-size: 13px; color: var(--color-text-muted); }
+.card-meta { font-size: 12px; color: var(--color-text-hint); }</pre></details>
+    </div>
+
+    <h3>Input</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds stacked">
+        <div style="max-width:420px">
+          <label class="field-label" for="demo-search">Cerca nel catalogo</label>
+          <input id="demo-search" class="input" type="text" placeholder="Nome sistema, codice, applicazione…">
+        </div>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.input {
+  padding: 10px 14px; font-size: 14px;
+  border: 1px solid var(--color-border); border-radius: var(--radius-md);
+  background: var(--color-surface); color: var(--color-text);
+}
+.input::placeholder { color: var(--color-text-hint); }
+.input:focus { outline: 2px solid var(--color-accent); outline-offset: -1px; }</pre></details>
+    </div>
+
+    <h3>Alert</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds stacked">
+        <div class="alert alert-success">Computo salvato: 14 voci, importo aggiornato.</div>
+        <div class="alert alert-warn">I dati di vendita BC sono fermi a novembre 2023.</div>
+        <div class="alert alert-danger">Errore nel caricamento del sistema: riprova o contatta l'assistenza.</div>
+        <div class="alert alert-info">La revisione REV 03 sostituisce il documento precedente.</div>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.alert { padding: 12px 16px; border-radius: var(--radius-md); font-size: 14px; border: 1px solid; }
+.alert-danger  { background: var(--color-danger-bg);  border-color: var(--color-danger-border);  color: var(--color-danger-text); }
+.alert-warn    { background: var(--color-warn-bg);    border-color: var(--color-warn-border);    color: var(--color-warn-text); }
+.alert-success { background: var(--color-success-bg); border-color: var(--color-success-border); color: var(--color-success-text); }
+.alert-info    { background: var(--color-info-bg);    border-color: var(--color-info-bg);        color: var(--color-info-text); }</pre></details>
+    </div>
+
+    <h3>Sidebar</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds">
+        <div class="sb">
+          <div class="sb-brand">
+            <div class="sb-logo">T</div>
+            <div><div class="sb-name">Studio Tassullo</div><div class="sb-sub">progettazione &amp; impresa</div></div>
+          </div>
+          <button class="sb-cta">+ Nuova chat</button>
+          <div class="sb-item is-active">Catalogo</div>
+          <div class="sb-item">Computo</div>
+          <div class="sb-item">Cantieri</div>
+          <div class="sb-item">Radar opere</div>
+        </div>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.sidebar { width: 220px; background: var(--color-sidebar-bg); }
+.sidebar-item {
+  padding: 7px 12px; border-radius: var(--radius-md);
+  font-size: 12px; font-weight: 500; color: var(--color-sidebar-text);
+}
+.sidebar-item:hover, .sidebar-item.is-active {
+  background: var(--color-sidebar-hover); color: var(--color-sidebar-text-hi);
+}
+.sidebar-cta { background: var(--color-accent); color: #fff; border-radius: var(--radius-md); }</pre></details>
+    </div>
+
+    <h3>Tabella dati</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds">
+        <div class="table-scroll">
+        <table class="table">
+          <thead><tr><th>Codice</th><th>Descrizione</th><th style="text-align:right">Quantità</th><th style="text-align:right">Importo</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">01.A</td><td>Rimozione intonaco ammalorato</td><td class="num">120,00 m²</td><td class="num">2.148,00 €</td></tr>
+            <tr><td class="mono">01.B</td><td>Intonaco macroporoso deumidificante</td><td class="num">120,00 m²</td><td class="num">5.976,00 €</td></tr>
+            <tr><td class="mono">02.A</td><td>Finitura ai silicati, due mani</td><td class="num">128,00 m²</td><td class="num">1.792,00 €</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.table { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--color-surface); }
+.table th {
+  text-align: left; padding: 9px 14px; font-size: 12px; font-weight: 600;
+  color: var(--color-text-muted); background: var(--color-surface-3);
+  border-bottom: 1px solid var(--color-border);
+}
+.table td { padding: 9px 14px; border-bottom: 1px solid var(--color-border); }
+.table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.table tr:hover td { background: var(--color-surface-3); }</pre></details>
+    </div>
+
+    <h3>Skeleton di caricamento</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds stacked">
+        <div style="max-width:420px;display:flex;flex-direction:column;gap:12px">
+          <div class="skel" style="width:60%;height:28px"></div>
+          <div class="skel" style="width:35%"></div>
+          <div class="skel" style="width:100%;height:90px"></div>
+        </div>
+      </div>
+      <details class="recipe"><summary>Ricetta CSS</summary><pre>.skel {
+  border-radius: var(--radius-md);
+  background: linear-gradient(90deg,
+    var(--color-surface-2) 25%, var(--color-surface-3) 37%, var(--color-surface-2) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+@media (prefers-reduced-motion: reduce) { .skel { animation: none; } }</pre></details>
+    </div>
+  </section>
+
+  <section id="uso">
+    <h2>Come si usa <span class="rule"></span></h2>
+    <p class="sec-note">In <strong>Studio Tassullo</strong>: i token sono già importati da <code>index.css</code>; nei CSS di pagine e componenti usa solo <code>var(--…)</code>, mai valori hardcodati. In una <strong>nuova app</strong>:</p>
+    <div class="demo-block">
+      <details class="recipe" open><summary>Setup nuova app (3 passi)</summary><pre>/* 1. Copia frontend/src/styles/theme.css nella nuova app */
+
+/* 2. Nel CSS globale, come prima riga: */
+@import './styles/theme.css';
+
+/* 3. Reset di base: */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-page-bg);
+  color: var(--color-text);
+}
+
+/* Per ribrandizzare mantenendo l'impianto: cambia solo i token
+   --color-accent* (e volendo la sidebar); tutto il resto segue. */</pre></details>
+    </div>
+  </section>
+
+</div>
+
+<div class="copy-toast" id="toast">copiato</div>
+
+<script>
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  document.querySelectorAll('.swatch').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const name = btn.dataset.var;
+      try { await navigator.clipboard.writeText('var(' + name + ')'); } catch (e) { /* clipboard non disponibile */ }
+      toast.textContent = 'var(' + name + ') copiato';
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+    });
+  });
+</script>

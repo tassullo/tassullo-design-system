@@ -1,0 +1,100 @@
+/* ════════════════════════════════════════════════════════════════
+   TASSULLO DESIGN SYSTEM — theme.css
+   FONTE UNICA dei design token dello stile Tassullo, condivisa
+   tra le app dello studio come pacchetto npm (@tassullo/theme,
+   repo github.com/cibiosacte-hue/tassullo-design-system).
+
+   Uso: @import '@tassullo/theme/theme.css'; come prima riga del
+   CSS globale dell'app. Regola: i CSS di pagine/componenti usano
+   SOLO queste variabili, niente colori/ombre hardcodati.
+   Style guide visiva con le ricette dei componenti: styleguide.html.
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Brand / accento (ocra Tassullo) ────────────────────────── */
+  --color-accent:        #E8990C;  /* azioni primarie, link, highlight */
+  --color-accent-hover:  #B45309;  /* hover/pressed dell'accento */
+  --color-accent-text:   #FFFFFF;  /* testo sopra sfondo accento */
+  --color-accent-light:  #FEF3C7;  /* sfondo tenue accento (chip attivi, focus ring) */
+  --color-accent-border: #FDE68A;  /* bordo tenue accento */
+
+  /* ── Superfici e testo (tema chiaro) ────────────────────────── */
+  --color-page-bg:    #F3F4F6;     /* sfondo pagina */
+  --color-surface:    #FFFFFF;     /* card, pannelli, input */
+  --color-surface-2:  #EEEEEE;     /* superfici secondarie, skeleton */
+  --color-surface-3:  #F5F5F5;     /* righe alternate, hover leggeri */
+  --color-border:     #E5E7EB;     /* bordi standard */
+  --color-text:       #111827;     /* testo principale */
+  --color-text-muted: #6B7280;     /* testo secondario */
+  --color-text-hint:  #9CA3AF;     /* placeholder, meta-info */
+
+  /* ── Sidebar (zona scura) ───────────────────────────────────── */
+  --color-sidebar-bg:      #1C1C1C;
+  --color-sidebar-hover:   #2A2A2A;
+  --color-sidebar-text:    #A8A8A8;
+  --color-sidebar-text-hi: #E5E7EB;
+  --color-sidebar-border:  #2A2A2A;
+
+  /* ── Stati semantici ────────────────────────────────────────── */
+  /* successo / ok */
+  --color-success:        #16A34A;
+  --color-success-text:   #2E7D32;
+  --color-success-bg:     #F0FDF4;
+  --color-success-border: #86EFAC;
+  /* errore / pericolo */
+  --color-danger:         #DC2626;
+  --color-danger-hover:   #B91C1C;
+  --color-danger-text:    #991B1B;
+  --color-danger-bg:      #FEF2F2;
+  --color-danger-border:  #FCA5A5;
+  /* avviso */
+  --color-warn-text:      #92400E;
+  --color-warn-bg:        #FFFBEB;
+  --color-warn-border:    #FDE68A;
+  /* informativo */
+  --color-info-text:      #1A5276;
+  --color-info-bg:        #D6ECFB;
+
+  /* Alias storici dei badge (non rimuovere: usati dai CSS esistenti) */
+  --color-badge-info-bg:   var(--color-info-bg);
+  --color-badge-info-text: var(--color-info-text);
+  --color-badge-warn-bg:   #FDE8B8;
+  --color-badge-warn-text: #8A6500;
+
+  /* ── Tipografia ─────────────────────────────────────────────── */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --text-xs:    11px;   /* micro-etichette, sottotitoli sidebar */
+  --text-sm:    12px;   /* meta, badge, voci sidebar */
+  --text-md:    13px;   /* chip, breadcrumb, testi densi */
+  --text-base:  14px;   /* corpo standard, input */
+  --text-lg:    15px;   /* titoli card */
+  --text-xl:    18px;   /* titoli sezione */
+  --text-title: 26px;   /* titolo pagina */
+
+  /* ── Raggi ──────────────────────────────────────────────────── */
+  --radius-sm:   4px;    /* badge, tag */
+  --radius-md:   10px;   /* bottoni, input */
+  --radius-lg:   12px;   /* card, pannelli, modali */
+  --radius-full: 999px;  /* chip/pillole */
+
+  /* ── Ombre ──────────────────────────────────────────────────── */
+  --shadow-sm:    0 1px 2px rgba(16, 24, 40, 0.04);   /* rilievo minimo */
+  --shadow-md:    0 2px 8px rgba(0, 0, 0, 0.06);      /* hover card */
+  --shadow-lg:    0 8px 24px rgba(0, 0, 0, 0.12);     /* dropdown, popover */
+  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.25);    /* modali */
+  --focus-ring:   0 0 0 3px var(--color-accent-light);/* focus tastiera */
+
+  /* ── Spaziatura (scala base 4px) ────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-page: 32px 40px;  /* padding standard delle pagine */
+  --page-max-width: 1180px; /* larghezza massima contenuto pagina */
+
+  /* ── Transizioni ────────────────────────────────────────────── */
+  --transition-fast: 0.15s;
+}
