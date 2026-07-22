@@ -7,11 +7,12 @@
 ## Contesto
 
 Le app dello studio Tassullo (la prima è "Studio Tassullo" / SuperTM) condividono
-un unico stile grafico — sidebar antracite `#1C1C1C`, superfici bianche su grigio
-freddo, accento ocra `#E8990C` — centralizzato nel pacchetto npm **`@tassullo/theme`**,
+un unico stile grafico, allineato al sito istituzionale tassullo.it — nero `#141414`,
+superfici chiare su neutri caldi, accento arancio `#F4AC3D` con testo scuro —
+centralizzato nel pacchetto npm **`@tassullo/theme`**,
 che vive nel repo GitHub pubblico:
 
-**https://github.com/cibiosacte-hue/tassullo-design-system**
+**https://github.com/tassullo/tassullo-design-system**
 
 Il pacchetto contiene:
 - `theme.css` — tutti i design token come variabili CSS: colori (brand, superfici,
@@ -29,7 +30,7 @@ Non esiste un registry npm: il pacchetto si installa direttamente dal repo git.
    le ricette della style guide valgono identiche).
 2. Installare il tema **prima di scrivere la prima pagina**:
    ```bash
-   npm install github:cibiosacte-hue/tassullo-design-system
+   npm install github:tassullo/tassullo-design-system
    ```
 3. Nel CSS globale (`src/index.css`), come **prima riga**:
    ```css
@@ -59,7 +60,7 @@ non solo al setup:
 
 - I design token (colori, tipografia, raggi, ombre, spaziatura) vivono nel
   pacchetto condiviso `@tassullo/theme`
-  (https://github.com/cibiosacte-hue/tassullo-design-system).
+  (https://github.com/tassullo/tassullo-design-system).
 - Nei CSS di pagine e componenti usare SOLO le variabili
   (`var(--color-accent)`, `var(--radius-lg)`, `var(--shadow-md)`, …):
   MAI hex, ombre o raggi hardcodati.

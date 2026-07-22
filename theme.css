@@ -1,8 +1,12 @@
 /* ════════════════════════════════════════════════════════════════
-   TASSULLO DESIGN SYSTEM — theme.css
+   TASSULLO DESIGN SYSTEM — theme.css (v1.1.0)
    FONTE UNICA dei design token dello stile Tassullo, condivisa
    tra le app dello studio come pacchetto npm (@tassullo/theme,
-   repo github.com/cibiosacte-hue/tassullo-design-system).
+   repo github.com/tassullo/tassullo-design-system).
+
+   v1.1.0: palette allineata al sito istituzionale tassullo.it —
+   arancio brand #F4AC3D con testo scuro, neutri caldi, nero #141414,
+   verde #1CAC7C, raggi più asciutti, stack font con Replicall.
 
    Uso: @import '@tassullo/theme/theme.css'; come prima riga del
    CSS globale dell'app. Regola: i CSS di pagine/componenti usano
@@ -11,36 +15,38 @@
    ════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── Brand / accento (ocra Tassullo) ────────────────────────── */
-  --color-accent:        #E8990C;  /* azioni primarie, link, highlight */
-  --color-accent-hover:  #B45309;  /* hover/pressed dell'accento */
-  --color-accent-text:   #FFFFFF;  /* testo sopra sfondo accento */
-  --color-accent-light:  #FEF3C7;  /* sfondo tenue accento (chip attivi, focus ring) */
-  --color-accent-border: #FDE68A;  /* bordo tenue accento */
+  /* ── Brand / accento (arancio istituzionale tassullo.it) ────── */
+  --color-accent:        #F4AC3D;  /* azioni primarie, highlight (=--orange del sito) */
+  --color-accent-hover:  #E8990C;  /* hover/pressed dell'accento */
+  --color-accent-text:   #141414;  /* testo sopra sfondo accento (il sito usa nero, non bianco) */
+  --color-accent-ink:    #B45309;  /* accento leggibile come TESTO su fondo chiaro (link) */
+  --color-accent-light:  #FCF0DB;  /* sfondo tenue accento (chip attivi, focus ring) */
+  --color-accent-border: #F5D9A8;  /* bordo tenue accento */
 
-  /* ── Superfici e testo (tema chiaro) ────────────────────────── */
-  --color-page-bg:    #F3F4F6;     /* sfondo pagina */
-  --color-surface:    #FFFFFF;     /* card, pannelli, input */
-  --color-surface-2:  #EEEEEE;     /* superfici secondarie, skeleton */
-  --color-surface-3:  #F5F5F5;     /* righe alternate, hover leggeri */
-  --color-border:     #E5E7EB;     /* bordi standard */
-  --color-text:       #111827;     /* testo principale */
-  --color-text-muted: #6B7280;     /* testo secondario */
-  --color-text-hint:  #9CA3AF;     /* placeholder, meta-info */
+  /* ── Superfici e testo (neutri caldi come tassullo.it) ──────── */
+  --color-page-bg:    #F6F6F4;     /* sfondo pagina (=--grey-background del sito) */
+  --color-surface:    #FDFDFD;     /* card, pannelli, input (=--white del sito) */
+  --color-surface-2:  #ECEAE8;     /* superfici secondarie, skeleton */
+  --color-surface-3:  #F4F3F1;     /* righe alternate, hover leggeri */
+  --color-border:     #DDDBDB;     /* bordi standard (=--grey01 del sito) */
+  --color-border-strong: #C4C4C4;  /* bordi marcati (=--grey-border del sito) */
+  --color-text:       #141414;     /* testo principale (=--black del sito) */
+  --color-text-muted: #6E6B67;     /* testo secondario (neutro caldo) */
+  --color-text-hint:  #A8A5A1;     /* placeholder, meta-info */
 
   /* ── Sidebar (zona scura) ───────────────────────────────────── */
-  --color-sidebar-bg:      #1C1C1C;
-  --color-sidebar-hover:   #2A2A2A;
+  --color-sidebar-bg:      #141414;
+  --color-sidebar-hover:   #262626;
   --color-sidebar-text:    #A8A8A8;
-  --color-sidebar-text-hi: #E5E7EB;
-  --color-sidebar-border:  #2A2A2A;
+  --color-sidebar-text-hi: #EDEDEB;
+  --color-sidebar-border:  #262626;
 
   /* ── Stati semantici ────────────────────────────────────────── */
-  /* successo / ok */
-  --color-success:        #16A34A;
-  --color-success-text:   #2E7D32;
-  --color-success-bg:     #F0FDF4;
-  --color-success-border: #86EFAC;
+  /* successo / ok (verde istituzionale #1CAC7C) */
+  --color-success:        #1CAC7C;
+  --color-success-text:   #0E7A57;
+  --color-success-bg:     #EAF7F2;
+  --color-success-border: #9FDFC8;
   /* errore / pericolo */
   --color-danger:         #DC2626;
   --color-danger-hover:   #B91C1C;
@@ -49,8 +55,8 @@
   --color-danger-border:  #FCA5A5;
   /* avviso */
   --color-warn-text:      #92400E;
-  --color-warn-bg:        #FFFBEB;
-  --color-warn-border:    #FDE68A;
+  --color-warn-bg:        #FFF9EC;
+  --color-warn-border:    #F5D9A8;
   /* informativo */
   --color-info-text:      #1A5276;
   --color-info-bg:        #D6ECFB;
@@ -58,11 +64,15 @@
   /* Alias storici dei badge (non rimuovere: usati dai CSS esistenti) */
   --color-badge-info-bg:   var(--color-info-bg);
   --color-badge-info-text: var(--color-info-text);
-  --color-badge-warn-bg:   #FDE8B8;
+  --color-badge-warn-bg:   #FBE8C4;
   --color-badge-warn-text: #8A6500;
 
   /* ── Tipografia ─────────────────────────────────────────────── */
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  /* Replicall è il font istituzionale (licenza Webflow del sito):
+     lo stack lo usa se l'app lo carica via @font-face, altrimenti
+     degrada al font di sistema. NON distribuire i .woff nel pacchetto
+     senza verifica licenza. */
+  --font-family: 'Replicall', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --text-xs:    11px;   /* micro-etichette, sottotitoli sidebar */
   --text-sm:    12px;   /* meta, badge, voci sidebar */
@@ -72,17 +82,17 @@
   --text-xl:    18px;   /* titoli sezione */
   --text-title: 26px;   /* titolo pagina */
 
-  /* ── Raggi ──────────────────────────────────────────────────── */
+  /* ── Raggi (tassullo.it usa 6px sui bottoni) ────────────────── */
   --radius-sm:   4px;    /* badge, tag */
-  --radius-md:   10px;   /* bottoni, input */
-  --radius-lg:   12px;   /* card, pannelli, modali */
+  --radius-md:   6px;    /* bottoni, input */
+  --radius-lg:   10px;   /* card, pannelli, modali */
   --radius-full: 999px;  /* chip/pillole */
 
   /* ── Ombre ──────────────────────────────────────────────────── */
-  --shadow-sm:    0 1px 2px rgba(16, 24, 40, 0.04);   /* rilievo minimo */
-  --shadow-md:    0 2px 8px rgba(0, 0, 0, 0.06);      /* hover card */
-  --shadow-lg:    0 8px 24px rgba(0, 0, 0, 0.12);     /* dropdown, popover */
-  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.25);    /* modali */
+  --shadow-sm:    0 1px 2px rgba(20, 20, 20, 0.04);   /* rilievo minimo */
+  --shadow-md:    0 2px 8px rgba(20, 20, 20, 0.06);   /* hover card */
+  --shadow-lg:    0 8px 24px rgba(20, 20, 20, 0.12);  /* dropdown, popover */
+  --shadow-modal: 0 20px 60px rgba(20, 20, 20, 0.25); /* modali */
   --focus-ring:   0 0 0 3px var(--color-accent-light);/* focus tastiera */
 
   /* ── Spaziatura (scala base 4px) ────────────────────────────── */

@@ -1,7 +1,7 @@
 {
   "name": "@tassullo/theme",
-  "version": "1.0.0",
-  "description": "Design system Tassullo: design token CSS condivisi tra le app dello studio (Studio Tassullo e successive)",
+  "version": "1.1.0",
+  "description": "Design system Tassullo: design token CSS condivisi tra le app dello studio, allineati al sito istituzionale tassullo.it",
   "style": "theme.css",
   "exports": {
     ".": "./theme.css",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/cibiosacte-hue/tassullo-design-system.git"
+    "url": "https://github.com/tassullo/tassullo-design-system.git"
   },
   "keywords": [
     "design-system",

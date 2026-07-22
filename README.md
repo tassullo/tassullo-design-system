@@ -9,7 +9,7 @@ Aprila nel browser per consultarla.
 ## Usarlo in un'app
 
 ```bash
-npm install github:cibiosacte-hue/tassullo-design-system
+npm install github:tassullo/tassullo-design-system
 ```
 
 Nel CSS globale, come prima riga:

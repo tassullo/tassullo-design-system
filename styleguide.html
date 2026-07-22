@@ -2,19 +2,19 @@
 <style>
   /* ── Chrome della guida: adatta al tema del lettore ─────────── */
   :root {
-    --g-bg: #F3F4F6;
-    --g-surface: #FFFFFF;
-    --g-surface-2: #F5F5F5;
-    --g-border: #E5E7EB;
-    --g-ink: #111827;
-    --g-muted: #6B7280;
-    --g-hint: #9CA3AF;
-    --g-accent: #E8990C;
-    --g-accent-hover: #B45309;
-    --g-accent-light: #FEF3C7;
-    --g-dark: #1C1C1C;
-    --g-code-bg: #1C1C1C;
-    --g-code-ink: #E5E7EB;
+    --g-bg: #F6F6F4;
+    --g-surface: #FDFDFD;
+    --g-surface-2: #F4F3F1;
+    --g-border: #DDDBDB;
+    --g-ink: #141414;
+    --g-muted: #6E6B67;
+    --g-hint: #A8A5A1;
+    --g-accent: #F4AC3D;
+    --g-accent-hover: #E8990C;
+    --g-accent-light: #FCF0DB;
+    --g-dark: #141414;
+    --g-code-bg: #141414;
+    --g-code-ink: #EDEDEB;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -22,10 +22,10 @@
       --g-surface: #1F1F1F;
       --g-surface-2: #262626;
       --g-border: #333333;
-      --g-ink: #E5E7EB;
+      --g-ink: #EDEDEB;
       --g-muted: #A8A8A8;
       --g-hint: #777777;
-      --g-accent-light: rgba(232, 153, 12, 0.18);
+      --g-accent-light: rgba(244, 172, 61, 0.18);
       --g-code-bg: #111111;
     }
   }
@@ -34,22 +34,22 @@
     --g-surface: #1F1F1F;
     --g-surface-2: #262626;
     --g-border: #333333;
-    --g-ink: #E5E7EB;
+    --g-ink: #EDEDEB;
     --g-muted: #A8A8A8;
     --g-hint: #777777;
-    --g-accent-light: rgba(232, 153, 12, 0.18);
+    --g-accent-light: rgba(244, 172, 61, 0.18);
     --g-code-bg: #111111;
   }
   :root[data-theme="light"] {
-    --g-bg: #F3F4F6;
-    --g-surface: #FFFFFF;
-    --g-surface-2: #F5F5F5;
-    --g-border: #E5E7EB;
-    --g-ink: #111827;
-    --g-muted: #6B7280;
-    --g-hint: #9CA3AF;
-    --g-accent-light: #FEF3C7;
-    --g-code-bg: #1C1C1C;
+    --g-bg: #F6F6F4;
+    --g-surface: #FDFDFD;
+    --g-surface-2: #F4F3F1;
+    --g-border: #DDDBDB;
+    --g-ink: #141414;
+    --g-muted: #6E6B67;
+    --g-hint: #A8A5A1;
+    --g-accent-light: #FCF0DB;
+    --g-code-bg: #141414;
   }
 
   body {
@@ -67,10 +67,10 @@
 
   /* ── Header ─────────────────────────────────────────────────── */
   header {
-    background: #1C1C1C;
-    color: #E5E7EB;
+    background: #141414;
+    color: #EDEDEB;
     padding: 40px 24px 32px;
-    border-bottom: 3px solid #E8990C;
+    border-bottom: 3px solid #F4AC3D;
   }
   .header-inner { max-width: 1060px; margin: 0 auto; }
   .header-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
@@ -82,7 +82,7 @@
   header h1 { margin: 0; font-size: 26px; font-weight: 700; color: #fff; text-wrap: balance; }
   .header-sub { margin: 0; color: #A8A8A8; font-size: 14px; }
   header p.lede { color: #A8A8A8; font-size: 14px; max-width: 62ch; margin: 10px 0 0; }
-  header p.lede strong { color: #E8990C; font-weight: 600; }
+  header p.lede strong { color: #F4AC3D; font-weight: 600; }
 
   nav.toc {
     position: sticky; top: 0; z-index: 10;
@@ -140,7 +140,7 @@
 
   .copy-toast {
     position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(8px);
-    background: #1C1C1C; color: #fff; font-size: 13px;
+    background: #141414; color: #fff; font-size: 13px;
     padding: 8px 16px; border-radius: 999px; opacity: 0;
     transition: opacity .2s, transform .2s; pointer-events: none;
     box-shadow: 0 8px 24px rgba(0,0,0,.25);
@@ -173,7 +173,7 @@
   .form-item.shadow-item .demo { background: var(--g-surface); border: none; }
   .form-item .fname { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; }
   .form-item .fval { font-size: 11px; color: var(--g-hint); margin-top: 2px; }
-  .space-bar { background: #E8990C; height: 16px; border-radius: 3px; }
+  .space-bar { background: #F4AC3D; height: 16px; border-radius: 3px; }
   .space-row { display: flex; align-items: center; gap: 14px; padding: 6px 0; }
   .space-row .fname { width: 110px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: var(--g-muted); }
   .space-row .fval { font-size: 12px; color: var(--g-hint); font-variant-numeric: tabular-nums; }
@@ -210,25 +210,25 @@
      per non interferire col chrome della guida).
      ════════════════════════════════════════════════════════════ */
   .tds {
-    --color-accent: #E8990C; --color-accent-hover: #B45309;
-    --color-accent-text: #FFFFFF; --color-accent-light: #FEF3C7; --color-accent-border: #FDE68A;
-    --color-page-bg: #F3F4F6; --color-surface: #FFFFFF;
-    --color-surface-2: #EEEEEE; --color-surface-3: #F5F5F5;
-    --color-border: #E5E7EB; --color-text: #111827;
-    --color-text-muted: #6B7280; --color-text-hint: #9CA3AF;
-    --color-sidebar-bg: #1C1C1C; --color-sidebar-hover: #2A2A2A;
-    --color-sidebar-text: #A8A8A8; --color-sidebar-text-hi: #E5E7EB;
-    --color-success: #16A34A; --color-success-text: #2E7D32;
-    --color-success-bg: #F0FDF4; --color-success-border: #86EFAC;
+    --color-accent: #F4AC3D; --color-accent-hover: #E8990C; --color-accent-ink: #B45309;
+    --color-accent-text: #141414; --color-accent-light: #FCF0DB; --color-accent-border: #F5D9A8;
+    --color-page-bg: #F6F6F4; --color-surface: #FDFDFD;
+    --color-surface-2: #ECEAE8; --color-surface-3: #F4F3F1;
+    --color-border: #DDDBDB; --color-border-strong: #C4C4C4; --color-text: #141414;
+    --color-text-muted: #6E6B67; --color-text-hint: #A8A5A1;
+    --color-sidebar-bg: #141414; --color-sidebar-hover: #262626;
+    --color-sidebar-text: #A8A8A8; --color-sidebar-text-hi: #EDEDEB;
+    --color-success: #1CAC7C; --color-success-text: #0E7A57;
+    --color-success-bg: #EAF7F2; --color-success-border: #9FDFC8;
     --color-danger: #DC2626; --color-danger-hover: #B91C1C; --color-danger-text: #991B1B;
     --color-danger-bg: #FEF2F2; --color-danger-border: #FCA5A5;
-    --color-warn-text: #92400E; --color-warn-bg: #FFFBEB; --color-warn-border: #FDE68A;
+    --color-warn-text: #92400E; --color-warn-bg: #FFF9EC; --color-warn-border: #F5D9A8;
     --color-info-text: #1A5276; --color-info-bg: #D6ECFB;
-    --radius-sm: 4px; --radius-md: 10px; --radius-lg: 12px; --radius-full: 999px;
+    --radius-sm: 4px; --radius-md: 6px; --radius-lg: 10px; --radius-full: 999px;
     --shadow-md: 0 2px 8px rgba(0,0,0,.06); --shadow-modal: 0 20px 60px rgba(0,0,0,.25);
     --focus-ring: 0 0 0 3px var(--color-accent-light);
     --transition-fast: 0.15s;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Replicall', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     color: var(--color-text);
   }
 
@@ -359,10 +359,10 @@
       <div class="header-logo">T</div>
       <div>
         <h1>Tassullo Design System</h1>
-        <p class="header-sub">Style guide di Studio Tassullo · v1 · luglio 2026</p>
+        <p class="header-sub">Style guide Tassullo · v1.1 · luglio 2026 — allineata a tassullo.it</p>
       </div>
     </div>
-    <p class="lede">Sidebar antracite, superfici bianche su grigio freddo, un solo accento: <strong>l'ocra Tassullo</strong>. Tutti i valori vivono in <strong>frontend/src/styles/theme.css</strong> — copia quel file in una nuova app e importalo per primo: questa pagina documenta i token e le ricette dei componenti costruiti sopra.</p>
+    <p class="lede">Nero <strong>#141414</strong>, superfici chiare su neutri caldi, un solo accento: <strong>l'arancio istituzionale di tassullo.it</strong>, sempre con testo scuro sopra. Tutti i valori vivono nel pacchetto npm <strong>@tassullo/theme</strong> (repo <strong>tassullo/tassullo-design-system</strong>): questa pagina documenta i token e le ricette dei componenti costruiti sopra.</p>
   </div>
 </header>
 
@@ -382,41 +382,43 @@
     <h2>Palette <span class="rule"></span></h2>
     <p class="sec-note">Clicca uno swatch per copiare il nome della variabile. I nomi sono semantici: dicono <em>a cosa serve</em> il colore, non che colore è — così un'altra app può ribrandizzare cambiando solo i token.</p>
 
-    <h3>Brand — ocra Tassullo</h3>
+    <h3>Brand — arancio istituzionale (tassullo.it)</h3>
     <div class="swatches">
-      <button class="swatch" data-var="--color-accent"><div class="chip" style="background:#E8990C"></div><span class="meta"><span class="name">--color-accent</span><span class="hex">#E8990C</span><span class="use">Azioni primarie, link, highlight</span></span></button>
-      <button class="swatch" data-var="--color-accent-hover"><div class="chip" style="background:#B45309"></div><span class="meta"><span class="name">--color-accent-hover</span><span class="hex">#B45309</span><span class="use">Hover e stato premuto</span></span></button>
-      <button class="swatch" data-var="--color-accent-light"><div class="chip hairline" style="background:#FEF3C7"></div><span class="meta"><span class="name">--color-accent-light</span><span class="hex">#FEF3C7</span><span class="use">Sfondi tenui, focus ring</span></span></button>
-      <button class="swatch" data-var="--color-accent-border"><div class="chip hairline" style="background:#FDE68A"></div><span class="meta"><span class="name">--color-accent-border</span><span class="hex">#FDE68A</span><span class="use">Bordi tenui accento</span></span></button>
+      <button class="swatch" data-var="--color-accent"><div class="chip" style="background:#F4AC3D"></div><span class="meta"><span class="name">--color-accent</span><span class="hex">#F4AC3D</span><span class="use">Azioni primarie, highlight — con testo scuro sopra, come sul sito</span></span></button>
+      <button class="swatch" data-var="--color-accent-hover"><div class="chip" style="background:#E8990C"></div><span class="meta"><span class="name">--color-accent-hover</span><span class="hex">#E8990C</span><span class="use">Hover e stato premuto</span></span></button>
+      <button class="swatch" data-var="--color-accent-ink"><div class="chip" style="background:#B45309"></div><span class="meta"><span class="name">--color-accent-ink</span><span class="hex">#B45309</span><span class="use">Accento come testo su fondo chiaro</span></span></button>
+      <button class="swatch" data-var="--color-accent-light"><div class="chip hairline" style="background:#FCF0DB"></div><span class="meta"><span class="name">--color-accent-light</span><span class="hex">#FCF0DB</span><span class="use">Sfondi tenui, focus ring</span></span></button>
+      <button class="swatch" data-var="--color-accent-border"><div class="chip hairline" style="background:#F5D9A8"></div><span class="meta"><span class="name">--color-accent-border</span><span class="hex">#F5D9A8</span><span class="use">Bordi tenui accento</span></span></button>
     </div>
 
     <h3>Superfici & testo</h3>
     <div class="swatches">
-      <button class="swatch" data-var="--color-page-bg"><div class="chip hairline" style="background:#F3F4F6"></div><span class="meta"><span class="name">--color-page-bg</span><span class="hex">#F3F4F6</span><span class="use">Sfondo pagina</span></span></button>
-      <button class="swatch" data-var="--color-surface"><div class="chip hairline" style="background:#FFFFFF"></div><span class="meta"><span class="name">--color-surface</span><span class="hex">#FFFFFF</span><span class="use">Card, pannelli, input</span></span></button>
-      <button class="swatch" data-var="--color-surface-3"><div class="chip hairline" style="background:#F5F5F5"></div><span class="meta"><span class="name">--color-surface-3</span><span class="hex">#F5F5F5</span><span class="use">Righe alternate, hover leggeri</span></span></button>
-      <button class="swatch" data-var="--color-border"><div class="chip hairline" style="background:#E5E7EB"></div><span class="meta"><span class="name">--color-border</span><span class="hex">#E5E7EB</span><span class="use">Bordi standard</span></span></button>
-      <button class="swatch" data-var="--color-text"><div class="chip" style="background:#111827"></div><span class="meta"><span class="name">--color-text</span><span class="hex">#111827</span><span class="use">Testo principale</span></span></button>
-      <button class="swatch" data-var="--color-text-muted"><div class="chip" style="background:#6B7280"></div><span class="meta"><span class="name">--color-text-muted</span><span class="hex">#6B7280</span><span class="use">Testo secondario</span></span></button>
-      <button class="swatch" data-var="--color-text-hint"><div class="chip" style="background:#9CA3AF"></div><span class="meta"><span class="name">--color-text-hint</span><span class="hex">#9CA3AF</span><span class="use">Placeholder, meta-info</span></span></button>
+      <button class="swatch" data-var="--color-page-bg"><div class="chip hairline" style="background:#F6F6F4"></div><span class="meta"><span class="name">--color-page-bg</span><span class="hex">#F6F6F4</span><span class="use">Sfondo pagina</span></span></button>
+      <button class="swatch" data-var="--color-surface"><div class="chip hairline" style="background:#FDFDFD"></div><span class="meta"><span class="name">--color-surface</span><span class="hex">#FDFDFD</span><span class="use">Card, pannelli, input</span></span></button>
+      <button class="swatch" data-var="--color-surface-3"><div class="chip hairline" style="background:#F4F3F1"></div><span class="meta"><span class="name">--color-surface-3</span><span class="hex">#F4F3F1</span><span class="use">Righe alternate, hover leggeri</span></span></button>
+      <button class="swatch" data-var="--color-border"><div class="chip hairline" style="background:#DDDBDB"></div><span class="meta"><span class="name">--color-border</span><span class="hex">#DDDBDB</span><span class="use">Bordi standard</span></span></button>
+      <button class="swatch" data-var="--color-border-strong"><div class="chip hairline" style="background:#C4C4C4"></div><span class="meta"><span class="name">--color-border-strong</span><span class="hex">#C4C4C4</span><span class="use">Bordi marcati</span></span></button>
+      <button class="swatch" data-var="--color-text"><div class="chip" style="background:#141414"></div><span class="meta"><span class="name">--color-text</span><span class="hex">#141414</span><span class="use">Testo principale</span></span></button>
+      <button class="swatch" data-var="--color-text-muted"><div class="chip" style="background:#6E6B67"></div><span class="meta"><span class="name">--color-text-muted</span><span class="hex">#6E6B67</span><span class="use">Testo secondario</span></span></button>
+      <button class="swatch" data-var="--color-text-hint"><div class="chip" style="background:#A8A5A1"></div><span class="meta"><span class="name">--color-text-hint</span><span class="hex">#A8A5A1</span><span class="use">Placeholder, meta-info</span></span></button>
     </div>
 
     <h3>Sidebar — zona scura</h3>
     <div class="swatches">
-      <button class="swatch" data-var="--color-sidebar-bg"><div class="chip" style="background:#1C1C1C"></div><span class="meta"><span class="name">--color-sidebar-bg</span><span class="hex">#1C1C1C</span><span class="use">Fondo sidebar</span></span></button>
-      <button class="swatch" data-var="--color-sidebar-hover"><div class="chip" style="background:#2A2A2A"></div><span class="meta"><span class="name">--color-sidebar-hover</span><span class="hex">#2A2A2A</span><span class="use">Hover / voce attiva</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-bg"><div class="chip" style="background:#141414"></div><span class="meta"><span class="name">--color-sidebar-bg</span><span class="hex">#141414</span><span class="use">Fondo sidebar</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-hover"><div class="chip" style="background:#262626"></div><span class="meta"><span class="name">--color-sidebar-hover</span><span class="hex">#262626</span><span class="use">Hover / voce attiva</span></span></button>
       <button class="swatch" data-var="--color-sidebar-text"><div class="chip" style="background:#A8A8A8"></div><span class="meta"><span class="name">--color-sidebar-text</span><span class="hex">#A8A8A8</span><span class="use">Voci di menu</span></span></button>
-      <button class="swatch" data-var="--color-sidebar-text-hi"><div class="chip" style="background:#E5E7EB"></div><span class="meta"><span class="name">--color-sidebar-text-hi</span><span class="hex">#E5E7EB</span><span class="use">Voce evidenziata</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-text-hi"><div class="chip" style="background:#EDEDEB"></div><span class="meta"><span class="name">--color-sidebar-text-hi</span><span class="hex">#EDEDEB</span><span class="use">Voce evidenziata</span></span></button>
     </div>
 
     <h3>Stati semantici</h3>
     <div class="swatches">
-      <button class="swatch" data-var="--color-success"><div class="chip" style="background:#16A34A"></div><span class="meta"><span class="name">--color-success</span><span class="hex">#16A34A</span><span class="use">Ok, confermato</span></span></button>
-      <button class="swatch" data-var="--color-success-bg"><div class="chip hairline" style="background:#F0FDF4"></div><span class="meta"><span class="name">--color-success-bg</span><span class="hex">#F0FDF4</span><span class="use">Sfondo successo</span></span></button>
+      <button class="swatch" data-var="--color-success"><div class="chip" style="background:#1CAC7C"></div><span class="meta"><span class="name">--color-success</span><span class="hex">#1CAC7C</span><span class="use">Ok, confermato</span></span></button>
+      <button class="swatch" data-var="--color-success-bg"><div class="chip hairline" style="background:#EAF7F2"></div><span class="meta"><span class="name">--color-success-bg</span><span class="hex">#EAF7F2</span><span class="use">Sfondo successo</span></span></button>
       <button class="swatch" data-var="--color-danger"><div class="chip" style="background:#DC2626"></div><span class="meta"><span class="name">--color-danger</span><span class="hex">#DC2626</span><span class="use">Errori, azioni distruttive</span></span></button>
       <button class="swatch" data-var="--color-danger-bg"><div class="chip hairline" style="background:#FEF2F2"></div><span class="meta"><span class="name">--color-danger-bg</span><span class="hex">#FEF2F2</span><span class="use">Sfondo errore</span></span></button>
       <button class="swatch" data-var="--color-warn-text"><div class="chip" style="background:#92400E"></div><span class="meta"><span class="name">--color-warn-text</span><span class="hex">#92400E</span><span class="use">Avvisi</span></span></button>
-      <button class="swatch" data-var="--color-warn-bg"><div class="chip hairline" style="background:#FFFBEB"></div><span class="meta"><span class="name">--color-warn-bg</span><span class="hex">#FFFBEB</span><span class="use">Sfondo avviso</span></span></button>
+      <button class="swatch" data-var="--color-warn-bg"><div class="chip hairline" style="background:#FFF9EC"></div><span class="meta"><span class="name">--color-warn-bg</span><span class="hex">#FFF9EC</span><span class="use">Sfondo avviso</span></span></button>
       <button class="swatch" data-var="--color-info-text"><div class="chip" style="background:#1A5276"></div><span class="meta"><span class="name">--color-info-text</span><span class="hex">#1A5276</span><span class="use">Note informative</span></span></button>
       <button class="swatch" data-var="--color-info-bg"><div class="chip hairline" style="background:#D6ECFB"></div><span class="meta"><span class="name">--color-info-bg</span><span class="hex">#D6ECFB</span><span class="use">Sfondo info</span></span></button>
     </div>
@@ -424,26 +426,26 @@
 
   <section id="tipografia">
     <h2>Tipografia <span class="rule"></span></h2>
-    <p class="sec-note">Font di sistema (<code>-apple-system, 'Segoe UI', system-ui</code>): l'app è uno strumento di lavoro quotidiano e adotta il font della piattaforma. La gerarchia si costruisce con corpo e peso, non cambiando famiglia. Monospace solo per codici sistema e dati tabellari.</p>
+    <p class="sec-note">Lo stack parte da <strong>Replicall</strong>, il font istituzionale di tassullo.it (licenza Webflow: i .woff NON si ridistribuiscono nel pacchetto — se l'app li carica via <code>@font-face</code> si attiva da solo), e degrada al font di sistema (<code>-apple-system, 'Segoe UI', system-ui</code>). La gerarchia si costruisce con corpo e peso, non cambiando famiglia. Monospace solo per codici sistema e dati tabellari.</p>
     <div class="type-table">
       <div class="type-row"><span class="tname">--text-title</span><span class="tsize">26px</span><span style="font-size:26px;font-weight:700">Catalogo sistemi</span></div>
       <div class="type-row"><span class="tname">--text-xl</span><span class="tsize">18px</span><span style="font-size:18px;font-weight:700">Composizione del sistema</span></div>
       <div class="type-row"><span class="tname">--text-lg</span><span class="tsize">15px</span><span style="font-size:15px;font-weight:600">Biocalce Muratura M15</span></div>
       <div class="type-row"><span class="tname">--text-base</span><span class="tsize">14px</span><span style="font-size:14px">Corpo standard: descrizioni, input, contenuti delle card e dei pannelli.</span></div>
       <div class="type-row"><span class="tname">--text-md</span><span class="tsize">13px</span><span style="font-size:13px">Testi densi, chip di filtro, breadcrumb.</span></div>
-      <div class="type-row"><span class="tname">--text-sm</span><span class="tsize">12px</span><span style="font-size:12px;color:#9CA3AF">Meta-informazioni, badge, voci della sidebar.</span></div>
+      <div class="type-row"><span class="tname">--text-sm</span><span class="tsize">12px</span><span style="font-size:12px;color:#A8A5A1">Meta-informazioni, badge, voci della sidebar.</span></div>
     </div>
   </section>
 
   <section id="forma">
     <h2>Forma & spazio <span class="rule"></span></h2>
-    <p class="sec-note">Tre raggi ricorrenti (badge 4 · controlli 10 · contenitori 12, pillole a 999), ombre leggere riservate a hover ed elementi sospesi, spaziatura su scala di 4&nbsp;px.</p>
+    <p class="sec-note">Tre raggi ricorrenti (badge 4 · controlli 6 come i bottoni di tassullo.it · contenitori 10, pillole a 999), ombre leggere riservate a hover ed elementi sospesi, spaziatura su scala di 4&nbsp;px.</p>
 
     <h3>Raggi</h3>
     <div class="form-grid">
       <div class="form-item"><div class="demo" style="border-radius:4px"></div><div class="fname">--radius-sm</div><div class="fval">4px · badge, tag</div></div>
-      <div class="form-item"><div class="demo" style="border-radius:10px"></div><div class="fname">--radius-md</div><div class="fval">10px · bottoni, input</div></div>
-      <div class="form-item"><div class="demo" style="border-radius:12px"></div><div class="fname">--radius-lg</div><div class="fval">12px · card, modali</div></div>
+      <div class="form-item"><div class="demo" style="border-radius:6px"></div><div class="fname">--radius-md</div><div class="fval">6px · bottoni, input</div></div>
+      <div class="form-item"><div class="demo" style="border-radius:10px"></div><div class="fname">--radius-lg</div><div class="fval">10px · card, modali</div></div>
       <div class="form-item"><div class="demo" style="border-radius:999px;height:32px;margin-top:32px"></div><div class="fname">--radius-full</div><div class="fval">999px · chip, pillole</div></div>
     </div>
 
@@ -673,10 +675,11 @@
     <h2>Come si usa <span class="rule"></span></h2>
     <p class="sec-note">In <strong>Studio Tassullo</strong>: i token sono già importati da <code>index.css</code>; nei CSS di pagine e componenti usa solo <code>var(--…)</code>, mai valori hardcodati. In una <strong>nuova app</strong>:</p>
     <div class="demo-block">
-      <details class="recipe" open><summary>Setup nuova app (3 passi)</summary><pre>/* 1. Copia frontend/src/styles/theme.css nella nuova app */
+      <details class="recipe" open><summary>Setup nuova app (3 passi)</summary><pre>/* 1. Installa il pacchetto condiviso:
+      npm install github:tassullo/tassullo-design-system */
 
 /* 2. Nel CSS globale, come prima riga: */
-@import './styles/theme.css';
+@import '@tassullo/theme/theme.css';
 
 /* 3. Reset di base: */
 * { box-sizing: border-box; }
