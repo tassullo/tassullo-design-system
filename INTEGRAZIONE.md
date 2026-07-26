@@ -103,3 +103,31 @@ Superfici, tipografia e componenti restano coerenti con il resto delle app.
   un PAT nei CI di tutte le app collegate.
 - Il lockfile aggancia la dipendenza a un commit preciso: le app non si
   aggiornano da sole a ogni push del tema, ma solo con `npm update`.
+
+## Se l'app genera anche documenti Word (relazioni, perizie, report)
+
+Lo stesso design system copre anche i documenti Word generati in Python con
+`python-docx`, nella cartella `docx/` del repo (vedi `docx/README.md` per il
+dettaglio completo). A differenza del tema CSS, **non è un pacchetto pip**:
+se l'app builda/deploya con un vincolo tipo `pip install --only-binary :all:`
+(niente wheel da sorgente — controllare il workflow di deploy dell'app),
+un pacchetto installato da `git+https://...` romperebbe il deploy perché non
+ha un wheel precompilato. La propagazione è quindi manuale, per copia di file:
+
+1. Copia `docx/tassullo_report.py` nel repo dell'app (es. come
+   `relazione_tassullo.py` nel root, o dove convenzionalmente vivono i moduli
+   di export).
+2. Copia `docx/templates/relazione_tassullo_base.docx` nella cartella
+   template dell'app.
+3. Genera un documento di prova e verifica i colori (nero `#141414` per il
+   testo, sfondo tabella nero, filetto arancio `#F4AC3D` sotto i titoli §1):
+   ```python
+   import relazione_tassullo as RT
+   doc = RT.documento_base_senza_cover()
+   RT.aggiungi_titolo(doc, "1. Descrizione dell'intervento", livello=1)
+   doc.save("prova.docx")
+   ```
+
+Se in futuro l'app costruisse le proprie wheel in CI (o si usasse un registry
+privato), si potrebbe rivalutare un pacchetto pip installabile da git, come
+già avviene per il tema CSS via npm.

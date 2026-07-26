@@ -1,12 +1,17 @@
 # Tassullo Design System
 
-Fonte unica dello stile visivo delle app Tassullo: **`theme.css`** contiene tutti
-i design token (colori, tipografia, raggi, ombre, spaziatura) come variabili CSS.
-**`styleguide.html`** è la style guide visiva: palette click-to-copy e ricette CSS
-dei componenti (bottoni, chip, badge, card, input, alert, sidebar, tabelle, skeleton).
-Aprila nel browser per consultarla.
+Fonte unica dello stile visivo delle app Tassullo, su due medium:
 
-## Usarlo in un'app
+- **Web** — `theme.css`: tutti i design token (colori, tipografia, raggi, ombre,
+  spaziatura) come variabili CSS, installabile via npm. `styleguide.html` è la
+  style guide visiva: palette click-to-copy e ricette CSS dei componenti
+  (bottoni, chip, badge, card, input, alert, sidebar, tabelle, skeleton).
+  Aprila nel browser per consultarla.
+- **Documenti Word** — cartella `docx/`: modulo `python-docx` + template per
+  generare relazioni tecniche nello stesso brand. Vedi `docx/README.md`
+  (propagazione manuale, non pip — spiegato lì il perché).
+
+## Usarlo in un'app (stile web)
 
 ```bash
 npm install github:tassullo/tassullo-design-system
