@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   TASSULLO DESIGN SYSTEM — config stylelint condivisa (v1.2.0)
+   TASSULLO DESIGN SYSTEM — config stylelint condivisa (v1.2.3)
 
    Rende eseguibile la regola "nei CSS d'app solo variabili, mai
    valori hardcodati". Sta qui e non nei repo delle app perché
@@ -26,6 +26,18 @@ module.exports = {
       {
         message:
           'Colore hardcodato: usa un token di @tassullo/theme (es. var(--color-accent)). Se il colore non esiste, aggiungilo a theme.css nel design system.',
+      },
+    ],
+
+    /* Nemmeno i colori per nome. Sembra un dettaglio: in Studio un
+       `color: white` su fondo arancio è sopravvissuto a tutta la bonifica
+       degli hex proprio perché non era un hex — e il contrasto lì era
+       1.94:1. Una regola che copre solo una sintassi non è una regola. */
+    'color-named': [
+      'never',
+      {
+        message:
+          'Colore per nome: usa un token di @tassullo/theme (su fondo accento il testo è var(--color-accent-text), non bianco).',
       },
     ],
 
