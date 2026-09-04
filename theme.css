@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   TASSULLO DESIGN SYSTEM — theme.css (v1.1.0)
+   TASSULLO DESIGN SYSTEM — theme.css (v1.2.0)
    FONTE UNICA dei design token dello stile Tassullo, condivisa
    tra le app dello studio come pacchetto npm (@tassullo/theme,
    repo github.com/tassullo/tassullo-design-system).
@@ -7,11 +7,16 @@
    v1.1.0: palette allineata al sito istituzionale tassullo.it —
    arancio brand #F4AC3D con testo scuro, neutri caldi, nero #141414,
    verde #1CAC7C, raggi più asciutti, stack font con Replicall.
+   v1.2.0: aggiunti --color-on-danger e --color-overlay; i COMPONENTI escono dal testo
+   della style guide e diventano CSS importabile: components.css.
 
-   Uso: @import '@tassullo/theme/theme.css'; come prima riga del
-   CSS globale dell'app. Regola: i CSS di pagine/componenti usano
-   SOLO queste variabili, niente colori/ombre hardcodati.
-   Style guide visiva con le ricette dei componenti: styleguide.html.
+   Uso, come prime righe del CSS globale dell'app:
+     @import '@tassullo/theme/theme.css';
+     @import '@tassullo/theme/components.css';
+   Regola: i CSS di pagine/componenti usano SOLO queste variabili,
+   niente colori/ombre hardcodati — verificabile con la config
+   stylelint condivisa (@tassullo/theme/stylelint-config).
+   Style guide visiva: styleguide.html.
    ════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -53,6 +58,7 @@
   --color-danger-text:    #991B1B;
   --color-danger-bg:      #FEF2F2;
   --color-danger-border:  #FCA5A5;
+  --color-on-danger:      #FFFFFF;  /* testo/icone SOPRA fondo --color-danger (bottoni distruttivi) */
   /* avviso */
   --color-warn-text:      #92400E;
   --color-warn-bg:        #FFF9EC;
@@ -93,6 +99,7 @@
   --shadow-md:    0 2px 8px rgba(20, 20, 20, 0.06);   /* hover card */
   --shadow-lg:    0 8px 24px rgba(20, 20, 20, 0.12);  /* dropdown, popover */
   --shadow-modal: 0 20px 60px rgba(20, 20, 20, 0.25); /* modali */
+  --color-overlay: rgba(20, 20, 20, 0.45);            /* velo dietro le modali */
   --focus-ring:   0 0 0 3px var(--color-accent-light);/* focus tastiera */
 
   /* ── Spaziatura (scala base 4px) ────────────────────────────── */

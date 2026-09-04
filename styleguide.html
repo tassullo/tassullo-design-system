@@ -1,4 +1,12 @@
+<meta charset="utf-8">
 <title>Tassullo Design System</title>
+
+<!-- I CSS VERI del pacchetto. La guida non ridefinisce né i token né i
+     componenti: mostra esattamente ciò che le app importano, quindi non
+     può divergere da loro. -->
+<link rel="stylesheet" href="./theme.css">
+<link rel="stylesheet" href="./components.css">
+
 <style>
   /* ── Chrome della guida: adatta al tema del lettore ─────────── */
   :root {
@@ -128,8 +136,8 @@
     text-align: left; font-family: inherit; transition: border-color .15s, box-shadow .15s;
   }
   .swatch:hover { border-color: var(--g-accent); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
-  .swatch .chip { height: 56px; }
-  .swatch .chip.hairline { box-shadow: inset 0 -1px 0 var(--g-border); }
+  .swatch .swatch-color { height: 56px; }
+  .swatch .swatch-color.hairline { box-shadow: inset 0 -1px 0 var(--g-border); }
   .swatch .meta { padding: 8px 10px 10px; }
   .swatch .name {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -205,152 +213,42 @@
   }
 
   /* ════════════════════════════════════════════════════════════
-     TOKEN TASSULLO — identici a theme.css.
-     I componenti demo qui sotto usano SOLO questi (namespace .tds
-     per non interferire col chrome della guida).
+     STAGE DELLE DEMO
+     Token e componenti arrivano da theme.css e components.css,
+     linkati sopra: qui restano SOLO i vincoli di impaginazione
+     della guida (larghezze di esempio) e la sidebar finta, che
+     non è un componente del pacchetto.
      ════════════════════════════════════════════════════════════ */
-  .tds {
-    --color-accent: #F4AC3D; --color-accent-hover: #E8990C; --color-accent-ink: #B45309;
-    --color-accent-text: #141414; --color-accent-light: #FCF0DB; --color-accent-border: #F5D9A8;
-    --color-page-bg: #F6F6F4; --color-surface: #FDFDFD;
-    --color-surface-2: #ECEAE8; --color-surface-3: #F4F3F1;
-    --color-border: #DDDBDB; --color-border-strong: #C4C4C4; --color-text: #141414;
-    --color-text-muted: #6E6B67; --color-text-hint: #A8A5A1;
-    --color-sidebar-bg: #141414; --color-sidebar-hover: #262626;
-    --color-sidebar-text: #A8A8A8; --color-sidebar-text-hi: #EDEDEB;
-    --color-success: #1CAC7C; --color-success-text: #0E7A57;
-    --color-success-bg: #EAF7F2; --color-success-border: #9FDFC8;
-    --color-danger: #DC2626; --color-danger-hover: #B91C1C; --color-danger-text: #991B1B;
-    --color-danger-bg: #FEF2F2; --color-danger-border: #FCA5A5;
-    --color-warn-text: #92400E; --color-warn-bg: #FFF9EC; --color-warn-border: #F5D9A8;
-    --color-info-text: #1A5276; --color-info-bg: #D6ECFB;
-    --radius-sm: 4px; --radius-md: 6px; --radius-lg: 10px; --radius-full: 999px;
-    --shadow-md: 0 2px 8px rgba(0,0,0,.06); --shadow-modal: 0 20px 60px rgba(0,0,0,.25);
-    --focus-ring: 0 0 0 3px var(--color-accent-light);
-    --transition-fast: 0.15s;
-    font-family: 'Replicall', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    color: var(--color-text);
-  }
+  .tds { color: var(--color-text); }
+  .tds .card { max-width: 270px; cursor: pointer; }
+  .tds .input { max-width: 340px; }
 
-  /* Bottoni */
-  .tds .btn {
-    border: none; border-radius: var(--radius-md); padding: 8px 16px;
-    font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer;
-    transition: background var(--transition-fast);
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .tds .btn-primary { background: var(--color-accent); color: var(--color-accent-text); }
-  .tds .btn-primary:hover { background: var(--color-accent-hover); }
-  .tds .btn-secondary {
-    background: var(--color-surface); color: var(--color-text);
-    border: 1px solid var(--color-border);
-  }
-  .tds .btn-secondary:hover { border-color: var(--color-accent); color: var(--color-accent); }
-  .tds .btn-danger { background: var(--color-danger); color: #fff; }
-  .tds .btn-danger:hover { background: var(--color-danger-hover); }
-  .tds .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  .tds .btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
-
-  /* Chip */
-  .tds .chip-el {
-    padding: 6px 12px; font-size: 13px; border: 1px solid var(--color-border);
-    border-radius: var(--radius-full); background: var(--color-surface);
-    color: var(--color-text); cursor: pointer; font-family: inherit;
-    transition: border-color var(--transition-fast), background var(--transition-fast);
-  }
-  .tds .chip-el:hover { border-color: var(--color-accent); }
-  .tds .chip-el.is-active {
-    background: var(--color-accent); border-color: var(--color-accent);
-    color: var(--color-accent-text);
-  }
-
-  /* Badge di stato */
-  .tds .badge {
-    display: inline-block; padding: 3px 9px; font-size: 12px; font-weight: 600;
-    border-radius: var(--radius-full);
-  }
-  .tds .badge-success { background: var(--color-success-bg); color: var(--color-success-text); border: 1px solid var(--color-success-border); }
-  .tds .badge-danger  { background: var(--color-danger-bg);  color: var(--color-danger-text);  border: 1px solid var(--color-danger-border); }
-  .tds .badge-warn    { background: var(--color-warn-bg);    color: var(--color-warn-text);    border: 1px solid var(--color-warn-border); }
-  .tds .badge-info    { background: var(--color-info-bg);    color: var(--color-info-text); }
-  .tds .badge-accent  { background: var(--color-accent-light); color: var(--color-accent-hover); border: 1px solid var(--color-accent-border); }
-
-  /* Card */
-  .tds .card {
-    background: var(--color-surface); border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg); padding: 16px; max-width: 270px;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-    cursor: pointer;
-  }
-  .tds .card:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); }
-  .tds .card-code { font-size: 12px; font-weight: 600; color: var(--color-accent); margin-bottom: 4px; }
-  .tds .card-name { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
-  .tds .card-sub { font-size: 13px; color: var(--color-text-muted); margin-bottom: 8px; }
-  .tds .card-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--color-text-hint); margin-top: 8px; }
-
-  /* Input */
-  .tds .input {
-    width: 100%; max-width: 340px; padding: 10px 14px; font-size: 14px;
-    border: 1px solid var(--color-border); border-radius: var(--radius-md);
-    background: var(--color-surface); color: var(--color-text); font-family: inherit;
-  }
-  .tds .input::placeholder { color: var(--color-text-hint); }
-  .tds .input:focus { outline: 2px solid var(--color-accent); outline-offset: -1px; }
-  .tds .field-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
-
-  /* Alert */
-  .tds .alert { padding: 12px 16px; border-radius: var(--radius-md); font-size: 14px; border: 1px solid; }
-  .tds .alert-danger  { background: var(--color-danger-bg);  border-color: var(--color-danger-border);  color: var(--color-danger-text); }
-  .tds .alert-warn    { background: var(--color-warn-bg);    border-color: var(--color-warn-border);    color: var(--color-warn-text); }
-  .tds .alert-success { background: var(--color-success-bg); border-color: var(--color-success-border); color: var(--color-success-text); }
-  .tds .alert-info    { background: var(--color-info-bg);    border-color: var(--color-info-bg);        color: var(--color-info-text); }
-
-  /* Sidebar demo */
-  .tds .sb {
-    width: 220px; background: var(--color-sidebar-bg); border-radius: var(--radius-lg);
-    padding: 14px 10px; display: flex; flex-direction: column; gap: 4px;
-  }
+  /* Sidebar della demo: .sidebar e .sidebar-item vengono da
+     components.css, questi sono il contorno (logo, brand, CTA)
+     che ogni app disegna a modo suo. */
+  .tds .sidebar { border-radius: var(--radius-lg); padding: 14px 10px; gap: 4px; }
   .tds .sb-brand { display: flex; align-items: center; gap: 10px; padding: 0 4px 10px; }
   .tds .sb-logo {
-    width: 30px; height: 30px; background: #000; border-radius: 7px; color: #fff;
-    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;
+    width: 30px; height: 30px; background: var(--color-sidebar-hover);
+    border-radius: 7px; color: var(--color-sidebar-text-hi);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: var(--text-xl);
   }
-  .tds .sb-name { font-size: 13px; font-weight: 600; color: #fff; }
-  .tds .sb-sub { font-size: 10px; color: #666; }
-  .tds .sb-cta {
-    background: var(--color-accent); color: #fff; border: none; border-radius: var(--radius-md);
-    padding: 7px 12px; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer;
-    margin-bottom: 6px; transition: background var(--transition-fast);
-  }
-  .tds .sb-cta:hover { background: var(--color-accent-hover); }
-  .tds .sb-item {
-    padding: 7px 12px; border-radius: var(--radius-md); font-size: 12px; font-weight: 500;
-    color: var(--color-sidebar-text); cursor: pointer;
-  }
-  .tds .sb-item:hover { background: var(--color-sidebar-hover); color: var(--color-sidebar-text-hi); }
-  .tds .sb-item.is-active { background: var(--color-sidebar-hover); color: var(--color-sidebar-text-hi); }
+  .tds .sb-name { font-size: var(--text-md); font-weight: 600; color: var(--color-sidebar-text-hi); }
+  .tds .sb-sub { font-size: var(--text-xs); color: var(--color-sidebar-text); }
+  .tds .sb-cta { margin-bottom: 6px; }
 
-  /* Tabella */
-  .tds .table { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--color-surface); border-radius: var(--radius-lg); overflow: hidden; }
-  .tds .table th {
-    text-align: left; padding: 9px 14px; font-size: 12px; font-weight: 600;
-    color: var(--color-text-muted); background: var(--color-surface-3);
-    border-bottom: 1px solid var(--color-border);
+  /* Riga di classi sotto ogni demo, al posto della ricetta copiata */
+  p.uses {
+    margin: 0; padding: 9px 24px; border-top: 1px solid var(--g-border);
+    font-size: 12px; color: var(--g-muted);
   }
-  .tds .table td { padding: 9px 14px; border-bottom: 1px solid var(--color-border); }
-  .tds .table td.num { text-align: right; font-variant-numeric: tabular-nums; }
-  .tds .table tr:last-child td { border-bottom: none; }
-  .tds .table tr:hover td { background: var(--color-surface-3); }
-  .table-scroll { overflow-x: auto; width: 100%; border: 1px solid var(--g-border); border-radius: 12px; }
+  p.uses code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px; color: var(--g-ink); background: var(--g-surface-2);
+    padding: 1px 5px; border-radius: 4px; margin-right: 2px;
+  }
 
-  /* Skeleton */
-  .tds .skel {
-    border-radius: var(--radius-md); height: 18px;
-    background: linear-gradient(90deg, var(--color-surface-2) 25%, var(--color-surface-3) 37%, var(--color-surface-2) 63%);
-    background-size: 400% 100%; animation: tds-shimmer 1.4s ease infinite;
-  }
-  @keyframes tds-shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
-  @media (prefers-reduced-motion: reduce) { .tds .skel { animation: none; } }
 </style>
 
 <header>
@@ -384,43 +282,43 @@
 
     <h3>Brand — arancio istituzionale (tassullo.it)</h3>
     <div class="swatches">
-      <button class="swatch" data-var="--color-accent"><div class="chip" style="background:#F4AC3D"></div><span class="meta"><span class="name">--color-accent</span><span class="hex">#F4AC3D</span><span class="use">Azioni primarie, highlight — con testo scuro sopra, come sul sito</span></span></button>
-      <button class="swatch" data-var="--color-accent-hover"><div class="chip" style="background:#E8990C"></div><span class="meta"><span class="name">--color-accent-hover</span><span class="hex">#E8990C</span><span class="use">Hover e stato premuto</span></span></button>
-      <button class="swatch" data-var="--color-accent-ink"><div class="chip" style="background:#B45309"></div><span class="meta"><span class="name">--color-accent-ink</span><span class="hex">#B45309</span><span class="use">Accento come testo su fondo chiaro</span></span></button>
-      <button class="swatch" data-var="--color-accent-light"><div class="chip hairline" style="background:#FCF0DB"></div><span class="meta"><span class="name">--color-accent-light</span><span class="hex">#FCF0DB</span><span class="use">Sfondi tenui, focus ring</span></span></button>
-      <button class="swatch" data-var="--color-accent-border"><div class="chip hairline" style="background:#F5D9A8"></div><span class="meta"><span class="name">--color-accent-border</span><span class="hex">#F5D9A8</span><span class="use">Bordi tenui accento</span></span></button>
+      <button class="swatch" data-var="--color-accent"><div class="swatch-color" style="background:#F4AC3D"></div><span class="meta"><span class="name">--color-accent</span><span class="hex">#F4AC3D</span><span class="use">Azioni primarie, highlight — con testo scuro sopra, come sul sito</span></span></button>
+      <button class="swatch" data-var="--color-accent-hover"><div class="swatch-color" style="background:#E8990C"></div><span class="meta"><span class="name">--color-accent-hover</span><span class="hex">#E8990C</span><span class="use">Hover e stato premuto</span></span></button>
+      <button class="swatch" data-var="--color-accent-ink"><div class="swatch-color" style="background:#B45309"></div><span class="meta"><span class="name">--color-accent-ink</span><span class="hex">#B45309</span><span class="use">Accento come testo su fondo chiaro</span></span></button>
+      <button class="swatch" data-var="--color-accent-light"><div class="swatch-color hairline" style="background:#FCF0DB"></div><span class="meta"><span class="name">--color-accent-light</span><span class="hex">#FCF0DB</span><span class="use">Sfondi tenui, focus ring</span></span></button>
+      <button class="swatch" data-var="--color-accent-border"><div class="swatch-color hairline" style="background:#F5D9A8"></div><span class="meta"><span class="name">--color-accent-border</span><span class="hex">#F5D9A8</span><span class="use">Bordi tenui accento</span></span></button>
     </div>
 
     <h3>Superfici & testo</h3>
     <div class="swatches">
-      <button class="swatch" data-var="--color-page-bg"><div class="chip hairline" style="background:#F6F6F4"></div><span class="meta"><span class="name">--color-page-bg</span><span class="hex">#F6F6F4</span><span class="use">Sfondo pagina</span></span></button>
-      <button class="swatch" data-var="--color-surface"><div class="chip hairline" style="background:#FDFDFD"></div><span class="meta"><span class="name">--color-surface</span><span class="hex">#FDFDFD</span><span class="use">Card, pannelli, input</span></span></button>
-      <button class="swatch" data-var="--color-surface-3"><div class="chip hairline" style="background:#F4F3F1"></div><span class="meta"><span class="name">--color-surface-3</span><span class="hex">#F4F3F1</span><span class="use">Righe alternate, hover leggeri</span></span></button>
-      <button class="swatch" data-var="--color-border"><div class="chip hairline" style="background:#DDDBDB"></div><span class="meta"><span class="name">--color-border</span><span class="hex">#DDDBDB</span><span class="use">Bordi standard</span></span></button>
-      <button class="swatch" data-var="--color-border-strong"><div class="chip hairline" style="background:#C4C4C4"></div><span class="meta"><span class="name">--color-border-strong</span><span class="hex">#C4C4C4</span><span class="use">Bordi marcati</span></span></button>
-      <button class="swatch" data-var="--color-text"><div class="chip" style="background:#141414"></div><span class="meta"><span class="name">--color-text</span><span class="hex">#141414</span><span class="use">Testo principale</span></span></button>
-      <button class="swatch" data-var="--color-text-muted"><div class="chip" style="background:#6E6B67"></div><span class="meta"><span class="name">--color-text-muted</span><span class="hex">#6E6B67</span><span class="use">Testo secondario</span></span></button>
-      <button class="swatch" data-var="--color-text-hint"><div class="chip" style="background:#A8A5A1"></div><span class="meta"><span class="name">--color-text-hint</span><span class="hex">#A8A5A1</span><span class="use">Placeholder, meta-info</span></span></button>
+      <button class="swatch" data-var="--color-page-bg"><div class="swatch-color hairline" style="background:#F6F6F4"></div><span class="meta"><span class="name">--color-page-bg</span><span class="hex">#F6F6F4</span><span class="use">Sfondo pagina</span></span></button>
+      <button class="swatch" data-var="--color-surface"><div class="swatch-color hairline" style="background:#FDFDFD"></div><span class="meta"><span class="name">--color-surface</span><span class="hex">#FDFDFD</span><span class="use">Card, pannelli, input</span></span></button>
+      <button class="swatch" data-var="--color-surface-3"><div class="swatch-color hairline" style="background:#F4F3F1"></div><span class="meta"><span class="name">--color-surface-3</span><span class="hex">#F4F3F1</span><span class="use">Righe alternate, hover leggeri</span></span></button>
+      <button class="swatch" data-var="--color-border"><div class="swatch-color hairline" style="background:#DDDBDB"></div><span class="meta"><span class="name">--color-border</span><span class="hex">#DDDBDB</span><span class="use">Bordi standard</span></span></button>
+      <button class="swatch" data-var="--color-border-strong"><div class="swatch-color hairline" style="background:#C4C4C4"></div><span class="meta"><span class="name">--color-border-strong</span><span class="hex">#C4C4C4</span><span class="use">Bordi marcati</span></span></button>
+      <button class="swatch" data-var="--color-text"><div class="swatch-color" style="background:#141414"></div><span class="meta"><span class="name">--color-text</span><span class="hex">#141414</span><span class="use">Testo principale</span></span></button>
+      <button class="swatch" data-var="--color-text-muted"><div class="swatch-color" style="background:#6E6B67"></div><span class="meta"><span class="name">--color-text-muted</span><span class="hex">#6E6B67</span><span class="use">Testo secondario</span></span></button>
+      <button class="swatch" data-var="--color-text-hint"><div class="swatch-color" style="background:#A8A5A1"></div><span class="meta"><span class="name">--color-text-hint</span><span class="hex">#A8A5A1</span><span class="use">Placeholder, meta-info</span></span></button>
     </div>
 
     <h3>Sidebar — zona scura</h3>
     <div class="swatches">
-      <button class="swatch" data-var="--color-sidebar-bg"><div class="chip" style="background:#141414"></div><span class="meta"><span class="name">--color-sidebar-bg</span><span class="hex">#141414</span><span class="use">Fondo sidebar</span></span></button>
-      <button class="swatch" data-var="--color-sidebar-hover"><div class="chip" style="background:#262626"></div><span class="meta"><span class="name">--color-sidebar-hover</span><span class="hex">#262626</span><span class="use">Hover / voce attiva</span></span></button>
-      <button class="swatch" data-var="--color-sidebar-text"><div class="chip" style="background:#A8A8A8"></div><span class="meta"><span class="name">--color-sidebar-text</span><span class="hex">#A8A8A8</span><span class="use">Voci di menu</span></span></button>
-      <button class="swatch" data-var="--color-sidebar-text-hi"><div class="chip" style="background:#EDEDEB"></div><span class="meta"><span class="name">--color-sidebar-text-hi</span><span class="hex">#EDEDEB</span><span class="use">Voce evidenziata</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-bg"><div class="swatch-color" style="background:#141414"></div><span class="meta"><span class="name">--color-sidebar-bg</span><span class="hex">#141414</span><span class="use">Fondo sidebar</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-hover"><div class="swatch-color" style="background:#262626"></div><span class="meta"><span class="name">--color-sidebar-hover</span><span class="hex">#262626</span><span class="use">Hover / voce attiva</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-text"><div class="swatch-color" style="background:#A8A8A8"></div><span class="meta"><span class="name">--color-sidebar-text</span><span class="hex">#A8A8A8</span><span class="use">Voci di menu</span></span></button>
+      <button class="swatch" data-var="--color-sidebar-text-hi"><div class="swatch-color" style="background:#EDEDEB"></div><span class="meta"><span class="name">--color-sidebar-text-hi</span><span class="hex">#EDEDEB</span><span class="use">Voce evidenziata</span></span></button>
     </div>
 
     <h3>Stati semantici</h3>
     <div class="swatches">
-      <button class="swatch" data-var="--color-success"><div class="chip" style="background:#1CAC7C"></div><span class="meta"><span class="name">--color-success</span><span class="hex">#1CAC7C</span><span class="use">Ok, confermato</span></span></button>
-      <button class="swatch" data-var="--color-success-bg"><div class="chip hairline" style="background:#EAF7F2"></div><span class="meta"><span class="name">--color-success-bg</span><span class="hex">#EAF7F2</span><span class="use">Sfondo successo</span></span></button>
-      <button class="swatch" data-var="--color-danger"><div class="chip" style="background:#DC2626"></div><span class="meta"><span class="name">--color-danger</span><span class="hex">#DC2626</span><span class="use">Errori, azioni distruttive</span></span></button>
-      <button class="swatch" data-var="--color-danger-bg"><div class="chip hairline" style="background:#FEF2F2"></div><span class="meta"><span class="name">--color-danger-bg</span><span class="hex">#FEF2F2</span><span class="use">Sfondo errore</span></span></button>
-      <button class="swatch" data-var="--color-warn-text"><div class="chip" style="background:#92400E"></div><span class="meta"><span class="name">--color-warn-text</span><span class="hex">#92400E</span><span class="use">Avvisi</span></span></button>
-      <button class="swatch" data-var="--color-warn-bg"><div class="chip hairline" style="background:#FFF9EC"></div><span class="meta"><span class="name">--color-warn-bg</span><span class="hex">#FFF9EC</span><span class="use">Sfondo avviso</span></span></button>
-      <button class="swatch" data-var="--color-info-text"><div class="chip" style="background:#1A5276"></div><span class="meta"><span class="name">--color-info-text</span><span class="hex">#1A5276</span><span class="use">Note informative</span></span></button>
-      <button class="swatch" data-var="--color-info-bg"><div class="chip hairline" style="background:#D6ECFB"></div><span class="meta"><span class="name">--color-info-bg</span><span class="hex">#D6ECFB</span><span class="use">Sfondo info</span></span></button>
+      <button class="swatch" data-var="--color-success"><div class="swatch-color" style="background:#1CAC7C"></div><span class="meta"><span class="name">--color-success</span><span class="hex">#1CAC7C</span><span class="use">Ok, confermato</span></span></button>
+      <button class="swatch" data-var="--color-success-bg"><div class="swatch-color hairline" style="background:#EAF7F2"></div><span class="meta"><span class="name">--color-success-bg</span><span class="hex">#EAF7F2</span><span class="use">Sfondo successo</span></span></button>
+      <button class="swatch" data-var="--color-danger"><div class="swatch-color" style="background:#DC2626"></div><span class="meta"><span class="name">--color-danger</span><span class="hex">#DC2626</span><span class="use">Errori, azioni distruttive</span></span></button>
+      <button class="swatch" data-var="--color-danger-bg"><div class="swatch-color hairline" style="background:#FEF2F2"></div><span class="meta"><span class="name">--color-danger-bg</span><span class="hex">#FEF2F2</span><span class="use">Sfondo errore</span></span></button>
+      <button class="swatch" data-var="--color-warn-text"><div class="swatch-color" style="background:#92400E"></div><span class="meta"><span class="name">--color-warn-text</span><span class="hex">#92400E</span><span class="use">Avvisi</span></span></button>
+      <button class="swatch" data-var="--color-warn-bg"><div class="swatch-color hairline" style="background:#FFF9EC"></div><span class="meta"><span class="name">--color-warn-bg</span><span class="hex">#FFF9EC</span><span class="use">Sfondo avviso</span></span></button>
+      <button class="swatch" data-var="--color-info-text"><div class="swatch-color" style="background:#1A5276"></div><span class="meta"><span class="name">--color-info-text</span><span class="hex">#1A5276</span><span class="use">Note informative</span></span></button>
+      <button class="swatch" data-var="--color-info-bg"><div class="swatch-color hairline" style="background:#D6ECFB"></div><span class="meta"><span class="name">--color-info-bg</span><span class="hex">#D6ECFB</span><span class="use">Sfondo info</span></span></button>
     </div>
   </section>
 
@@ -481,42 +379,18 @@
         <button class="btn btn-danger">Elimina</button>
         <button class="btn btn-primary" disabled>Disabilitato</button>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.btn {
-  border: none; border-radius: var(--radius-md); padding: 8px 16px;
-  font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer;
-  transition: background var(--transition-fast);
-}
-.btn-primary { background: var(--color-accent); color: var(--color-accent-text); }
-.btn-primary:hover { background: var(--color-accent-hover); }
-.btn-secondary {
-  background: var(--color-surface); color: var(--color-text);
-  border: 1px solid var(--color-border);
-}
-.btn-secondary:hover { border-color: var(--color-accent); color: var(--color-accent); }
-.btn-danger { background: var(--color-danger); color: #fff; }
-.btn:disabled { opacity: .5; cursor: not-allowed; }
-.btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }</pre></details>
+      <p class="uses"><code>.btn</code> <code>.btn-primary</code> <code>.btn-secondary</code> <code>.btn-danger</code> <code>.btn-sm</code> <code>.btn-lg</code> <code>.btn-block</code> — in <code>components.css</code></p>
     </div>
 
     <h3>Chip di filtro</h3>
     <div class="demo-block">
       <div class="demo-stage tds">
-        <button class="chip-el is-active">Tutti</button>
-        <button class="chip-el">Deumidificazione</button>
-        <button class="chip-el">Consolidamento</button>
-        <button class="chip-el">Finiture</button>
+        <button class="chip is-active">Tutti</button>
+        <button class="chip">Deumidificazione</button>
+        <button class="chip">Consolidamento</button>
+        <button class="chip">Finiture</button>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.chip {
-  padding: 6px 12px; font-size: 13px;
-  border: 1px solid var(--color-border); border-radius: var(--radius-full);
-  background: var(--color-surface); color: var(--color-text); cursor: pointer;
-  transition: border-color var(--transition-fast), background var(--transition-fast);
-}
-.chip:hover { border-color: var(--color-accent); }
-.chip.is-active {
-  background: var(--color-accent); border-color: var(--color-accent);
-  color: var(--color-accent-text);
-}</pre></details>
+      <p class="uses"><code>.chip</code> <code>.chip.is-active</code> — in <code>components.css</code></p>
     </div>
 
     <h3>Badge di stato</h3>
@@ -528,15 +402,7 @@
         <span class="badge badge-info">REV 02</span>
         <span class="badge badge-accent">Beta</span>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.badge {
-  display: inline-block; padding: 3px 9px;
-  font-size: 12px; font-weight: 600; border-radius: var(--radius-full);
-}
-.badge-success { background: var(--color-success-bg); color: var(--color-success-text); border: 1px solid var(--color-success-border); }
-.badge-danger  { background: var(--color-danger-bg);  color: var(--color-danger-text);  border: 1px solid var(--color-danger-border); }
-.badge-warn    { background: var(--color-warn-bg);    color: var(--color-warn-text);    border: 1px solid var(--color-warn-border); }
-.badge-info    { background: var(--color-info-bg);    color: var(--color-info-text); }
-.badge-accent  { background: var(--color-accent-light); color: var(--color-accent-hover); border: 1px solid var(--color-accent-border); }</pre></details>
+      <p class="uses"><code>.badge</code> <code>.badge-success</code> <code>.badge-warn</code> <code>.badge-danger</code> <code>.badge-info</code> <code>.badge-accent</code> — in <code>components.css</code></p>
     </div>
 
     <h3>Card (pattern catalogo)</h3>
@@ -555,16 +421,7 @@
           <div class="card-meta"><span>4 famiglie</span><span>Rev 01</span></div>
         </div>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.card {
-  background: var(--color-surface); border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg); padding: 16px;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-.card:hover { border-color: var(--color-accent); box-shadow: var(--shadow-md); }
-.card-code { font-size: 12px; font-weight: 600; color: var(--color-accent); }
-.card-name { font-weight: 600; font-size: 15px; }
-.card-sub  { font-size: 13px; color: var(--color-text-muted); }
-.card-meta { font-size: 12px; color: var(--color-text-hint); }</pre></details>
+      <p class="uses"><code>.card</code> <code>.card-code</code> <code>.card-name</code> <code>.card-sub</code> <code>.card-meta</code> — in <code>components.css</code></p>
     </div>
 
     <h3>Input</h3>
@@ -575,13 +432,7 @@
           <input id="demo-search" class="input" type="text" placeholder="Nome sistema, codice, applicazione…">
         </div>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.input {
-  padding: 10px 14px; font-size: 14px;
-  border: 1px solid var(--color-border); border-radius: var(--radius-md);
-  background: var(--color-surface); color: var(--color-text);
-}
-.input::placeholder { color: var(--color-text-hint); }
-.input:focus { outline: 2px solid var(--color-accent); outline-offset: -1px; }</pre></details>
+      <p class="uses"><code>.input</code> <code>.field-label</code> — in <code>components.css</code></p>
     </div>
 
     <h3>Alert</h3>
@@ -592,37 +443,25 @@
         <div class="alert alert-danger">Errore nel caricamento del sistema: riprova o contatta l'assistenza.</div>
         <div class="alert alert-info">La revisione REV 03 sostituisce il documento precedente.</div>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.alert { padding: 12px 16px; border-radius: var(--radius-md); font-size: 14px; border: 1px solid; }
-.alert-danger  { background: var(--color-danger-bg);  border-color: var(--color-danger-border);  color: var(--color-danger-text); }
-.alert-warn    { background: var(--color-warn-bg);    border-color: var(--color-warn-border);    color: var(--color-warn-text); }
-.alert-success { background: var(--color-success-bg); border-color: var(--color-success-border); color: var(--color-success-text); }
-.alert-info    { background: var(--color-info-bg);    border-color: var(--color-info-bg);        color: var(--color-info-text); }</pre></details>
+      <p class="uses"><code>.alert</code> <code>.alert-success</code> <code>.alert-warn</code> <code>.alert-danger</code> <code>.alert-info</code> — in <code>components.css</code></p>
     </div>
 
     <h3>Sidebar</h3>
     <div class="demo-block">
       <div class="demo-stage tds">
-        <div class="sb">
+        <div class="sidebar">
           <div class="sb-brand">
             <div class="sb-logo">T</div>
             <div><div class="sb-name">Studio Tassullo</div><div class="sb-sub">progettazione &amp; impresa</div></div>
           </div>
-          <button class="sb-cta">+ Nuova chat</button>
-          <div class="sb-item is-active">Catalogo</div>
-          <div class="sb-item">Computo</div>
-          <div class="sb-item">Cantieri</div>
-          <div class="sb-item">Radar opere</div>
+          <button class="btn btn-primary sb-cta">+ Nuova chat</button>
+          <div class="sidebar-item is-active">Catalogo</div>
+          <div class="sidebar-item">Computo</div>
+          <div class="sidebar-item">Cantieri</div>
+          <div class="sidebar-item">Radar opere</div>
         </div>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.sidebar { width: 220px; background: var(--color-sidebar-bg); }
-.sidebar-item {
-  padding: 7px 12px; border-radius: var(--radius-md);
-  font-size: 12px; font-weight: 500; color: var(--color-sidebar-text);
-}
-.sidebar-item:hover, .sidebar-item.is-active {
-  background: var(--color-sidebar-hover); color: var(--color-sidebar-text-hi);
-}
-.sidebar-cta { background: var(--color-accent); color: #fff; border-radius: var(--radius-md); }</pre></details>
+      <p class="uses"><code>.sidebar</code> <code>.sidebar-item</code> <code>.sidebar-item.is-active</code> — in <code>components.css</code></p>
     </div>
 
     <h3>Tabella dati</h3>
@@ -639,15 +478,7 @@
         </table>
         </div>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.table { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--color-surface); }
-.table th {
-  text-align: left; padding: 9px 14px; font-size: 12px; font-weight: 600;
-  color: var(--color-text-muted); background: var(--color-surface-3);
-  border-bottom: 1px solid var(--color-border);
-}
-.table td { padding: 9px 14px; border-bottom: 1px solid var(--color-border); }
-.table td.num { text-align: right; font-variant-numeric: tabular-nums; }
-.table tr:hover td { background: var(--color-surface-3); }</pre></details>
+      <p class="uses"><code>.table</code> <code>.table th</code> <code>.table td</code> <code>.table td.num</code> <code>.table-scroll</code> — in <code>components.css</code></p>
     </div>
 
     <h3>Skeleton di caricamento</h3>
@@ -659,15 +490,7 @@
           <div class="skel" style="width:100%;height:90px"></div>
         </div>
       </div>
-      <details class="recipe"><summary>Ricetta CSS</summary><pre>.skel {
-  border-radius: var(--radius-md);
-  background: linear-gradient(90deg,
-    var(--color-surface-2) 25%, var(--color-surface-3) 37%, var(--color-surface-2) 63%);
-  background-size: 400% 100%;
-  animation: shimmer 1.4s ease infinite;
-}
-@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
-@media (prefers-reduced-motion: reduce) { .skel { animation: none; } }</pre></details>
+      <p class="uses"><code>.skel</code> — in <code>components.css</code></p>
     </div>
   </section>
 
@@ -675,11 +498,12 @@
     <h2>Come si usa <span class="rule"></span></h2>
     <p class="sec-note">In <strong>Studio Tassullo</strong>: i token sono già importati da <code>index.css</code>; nei CSS di pagine e componenti usa solo <code>var(--…)</code>, mai valori hardcodati. In una <strong>nuova app</strong>:</p>
     <div class="demo-block">
-      <details class="recipe" open><summary>Setup nuova app (3 passi)</summary><pre>/* 1. Installa il pacchetto condiviso:
+      <details class="recipe" open><summary>Setup nuova app (4 passi)</summary><pre>/* 1. Installa il pacchetto condiviso:
       npm install github:tassullo/tassullo-design-system */
 
-/* 2. Nel CSS globale, come prima riga: */
+/* 2. Nel CSS globale, come prime righe: i token e poi i componenti. */
 @import '@tassullo/theme/theme.css';
+@import '@tassullo/theme/components.css';
 
 /* 3. Reset di base: */
 * { box-sizing: border-box; }
@@ -689,6 +513,14 @@ body {
   background: var(--color-page-bg);
   color: var(--color-text);
 }
+
+/* 4. App usata in campo (guanti, schermo piccolo)? Nell'index.html:
+      &lt;body data-density="touch"&gt;
+   e i bersagli passano a &gt;=48px. Le app desktop dense non lo mettono. */
+
+/* Da qui in poi: nei CSS di pagina SOLO var(--token), mai valori
+   hardcodati. Lo verifica la config stylelint del pacchetto:
+   extends: '@tassullo/theme/stylelint-config'  */
 
 /* Per ribrandizzare mantenendo l'impianto: cambia solo i token
    --color-accent* (e volendo la sidebar); tutto il resto segue. */</pre></details>

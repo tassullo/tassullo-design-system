@@ -1,0 +1,369 @@
+/* ════════════════════════════════════════════════════════════════
+   TASSULLO DESIGN SYSTEM — components.css (v1.2.0)
+   Layer dei componenti ricorrenti, costruito SOLO sui token di
+   theme.css. È la seconda metà della fonte unica: theme.css dice
+   "di che colore", questo file dice "che forma ha un bottone".
+
+   Uso, nel CSS globale dell'app, in quest'ordine:
+     @import '@tassullo/theme/theme.css';
+     @import '@tassullo/theme/components.css';
+
+   Perché esiste: fino alla v1.1.0 le ricette dei componenti
+   vivevano solo come testo dentro styleguide.html, da copiare a
+   mano. Le due app che l'hanno fatto sono divergite (Officina le
+   ha copiate, Studio no e ha riscritto tutto per pagina, con 680
+   colori hardcodati). Un design system deve spedire CSS, non
+   testo da copiare.
+
+   ── Due densità ──────────────────────────────────────────────
+   Le ricette base sono in taglia DESKTOP compatta. Le app di
+   campo attivano la taglia touch con un attributo sul body:
+     <body data-density="touch">
+   che alza i bersagli a >=48px (regola "usabile coi guanti").
+   Il blocco è in fondo al file.
+
+   ── Regola sui conflitti ─────────────────────────────────────
+   Dove la ricetta di styleguide.html e l'implementazione di
+   Officina divergevano ha vinto OFFICINA, che è in produzione:
+   così l'adozione del file non produce differenze visive lì e
+   la fedeltà è verificabile. Le eccezioni sono commentate nel
+   punto in cui stanno — al momento una sola, .alert.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Bottoni ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: var(--text-md);
+  font-weight: 600;
+  cursor: pointer;
+  /* i .btn sono spesso <Link>: senza questo il browser li sottolinea */
+  text-decoration: none;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+}
+.btn-primary:not(:disabled):hover {
+  background: var(--color-accent-hover);
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+/* La ricetta in styleguide.html virava anche il TESTO a
+   var(--color-accent): #F4AC3D su bianco non passa il contrasto
+   come testo — per quello esiste --color-accent-ink. Qui cambia
+   solo il bordo, come in Officina. */
+.btn-secondary:not(:disabled):hover {
+  border-color: var(--color-accent);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: var(--color-on-danger);
+}
+.btn-danger:not(:disabled):hover {
+  background: var(--color-danger-hover);
+}
+
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+.btn-lg {
+  font-size: var(--text-lg);
+}
+/* Taglia da riga di tabella: vive nelle pagine di gestione desktop,
+   dove il bersaglio è un mouse. Sui flussi di campo resta il minimo
+   di 48px — coi guanti non si centra un bottone da 34px. */
+.btn-sm {
+  min-height: 34px;
+  padding: 6px 12px;
+  font-size: var(--text-md);
+  white-space: nowrap;
+}
+
+/* ── Chip di filtro ─────────────────────────────────────────── */
+.chip {
+  padding: 6px 12px;
+  font-size: var(--text-md);
+  font-weight: 600;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.chip:hover {
+  border-color: var(--color-accent);
+}
+/* Nome canonico dello stato attivo: .is-active (styleguide + Studio).
+   .active è un ALIAS TRANSITORIO per non imporre a Officina una
+   rinomina di 54 punti: da rimuovere quando Officina è migrata. */
+.chip.is-active,
+.chip.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+/* ── Input e label ──────────────────────────────────────────── */
+.input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: var(--text-base);
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.input::placeholder {
+  color: var(--color-text-hint);
+}
+.input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -1px;
+}
+
+.field-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--color-text);
+}
+
+/* ── Badge di stato ─────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+.badge-success {
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  border: 1px solid var(--color-success-border);
+}
+.badge-danger {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  border: 1px solid var(--color-danger-border);
+}
+.badge-warn {
+  background: var(--color-warn-bg);
+  color: var(--color-warn-text);
+  border: 1px solid var(--color-warn-border);
+}
+.badge-info {
+  background: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+.badge-accent {
+  background: var(--color-accent-light);
+  color: var(--color-accent-ink);
+  border: 1px solid var(--color-accent-border);
+}
+
+/* ── Alert ──────────────────────────────────────────────────── */
+/* Eccezione alla regola "vince Officina": l'alert è un messaggio da
+   leggere, quindi sta al corpo standard (--text-base), non ai 12px
+   che usava Officina. In Fase 2 gli alert di Officina crescono di
+   2px: è l'unica differenza visiva attesa lì. */
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  border: 1px solid;
+}
+.alert-success {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-border);
+  color: var(--color-success-text);
+}
+.alert-danger {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger-text);
+}
+.alert-warn {
+  background: var(--color-warn-bg);
+  border-color: var(--color-warn-border);
+  color: var(--color-warn-text);
+}
+.alert-info {
+  background: var(--color-info-bg);
+  border-color: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+
+/* ── Card (pattern catalogo) ────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+}
+.card-code {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent-ink);
+  margin-bottom: 4px;
+}
+.card-name {
+  font-weight: 600;
+  font-size: var(--text-lg);
+  margin-bottom: 2px;
+}
+.card-sub {
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  color: var(--color-text-hint);
+  margin-top: var(--space-2);
+}
+
+/* ── Tabella dati ───────────────────────────────────────────── */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--text-sm);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.table th {
+  text-align: left;
+  padding: 9px 14px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-surface-3);
+  border-bottom: 1px solid var(--color-border);
+}
+.table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+.table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.table tr:last-child td {
+  border-bottom: none;
+}
+.table-scroll {
+  overflow-x: auto;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* ── Sidebar (zona scura) ───────────────────────────────────── */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--color-sidebar-bg);
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-item {
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-sidebar-text);
+  cursor: pointer;
+  text-decoration: none;
+}
+.sidebar-item:hover,
+.sidebar-item.is-active,
+.sidebar-item.active {
+  background: var(--color-sidebar-hover);
+  color: var(--color-sidebar-text-hi);
+}
+
+/* ── Skeleton di caricamento ────────────────────────────────── */
+.skel {
+  border-radius: var(--radius-md);
+  height: 18px;
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-2) 25%,
+    var(--color-surface-3) 37%,
+    var(--color-surface-2) 63%
+  );
+  background-size: 400% 100%;
+  animation: tds-skel-shimmer 1.4s ease infinite;
+}
+@keyframes tds-skel-shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skel { animation: none; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   DENSITÀ TOUCH — opt-in con <body data-density="touch">
+   Per le app usate in campo (Officina): bersagli >=48px, "usabile
+   coi guanti". Le app desktop dense (Studio) non mettono l'attributo
+   e restano sulle taglie compatte qui sopra.
+   ════════════════════════════════════════════════════════════════ */
+[data-density="touch"] .btn {
+  min-height: 48px;
+  padding: 12px 18px;
+  font-size: var(--text-base);
+}
+[data-density="touch"] .btn-lg {
+  min-height: 56px;
+  font-size: var(--text-lg);
+}
+/* .btn-sm resta compatto anche in touch: è la taglia da riga di
+   tabella delle pagine di gestione, dove il bersaglio è un mouse. */
+[data-density="touch"] .btn-sm {
+  min-height: 34px;
+  padding: 6px 12px;
+  font-size: var(--text-md);
+}
+[data-density="touch"] .chip {
+  min-height: 40px;
+  padding: 8px 16px;
+}
+[data-density="touch"] .input {
+  min-height: 44px;
+}

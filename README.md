@@ -2,11 +2,19 @@
 
 Fonte unica dello stile visivo delle app Tassullo, su due medium:
 
-- **Web** — `theme.css`: tutti i design token (colori, tipografia, raggi, ombre,
-  spaziatura) come variabili CSS, installabile via npm. `styleguide.html` è la
-  style guide visiva: palette click-to-copy e ricette CSS dei componenti
-  (bottoni, chip, badge, card, input, alert, sidebar, tabelle, skeleton).
-  Aprila nel browser per consultarla.
+- **Web** — due CSS installabili via npm:
+  - `theme.css`: i design token (colori, tipografia, raggi, ombre, spaziatura)
+    come variabili CSS;
+  - `components.css`: le ricette dei componenti ricorrenti (bottoni, chip,
+    badge, card, input, alert, sidebar, tabelle, skeleton), costruite solo sui
+    token.
+
+  `styleguide.html` è la style guide visiva: palette click-to-copy e demo dei
+  componenti. **Le demo caricano i due CSS veri del pacchetto**, quindi mostrano
+  esattamente ciò che le app importano e non possono divergere. Aprila nel
+  browser per consultarla.
+- **Lint** — `stylelint-config.cjs`: la config condivisa che verifica in CI la
+  regola "solo variabili, mai valori hardcodati".
 - **Documenti Word** — cartella `docx/`: modulo `python-docx` + template per
   generare relazioni tecniche nello stesso brand. Vedi `docx/README.md`
   (propagazione manuale, non pip — spiegato lì il perché).
@@ -17,10 +25,11 @@ Fonte unica dello stile visivo delle app Tassullo, su due medium:
 npm install github:tassullo/tassullo-design-system
 ```
 
-Nel CSS globale, come prima riga:
+Nel CSS globale, come prime righe — prima i token, poi i componenti:
 
 ```css
 @import '@tassullo/theme/theme.css';
+@import '@tassullo/theme/components.css';
 ```
 
 Reset di base consigliato:
@@ -37,6 +46,33 @@ body {
 
 Da lì in poi, nei CSS dell'app si usano **solo le variabili** (`var(--color-accent)`,
 `var(--radius-lg)`, `var(--shadow-md)`, …) — mai valori hardcodati.
+
+### Densità
+
+Le ricette sono in taglia desktop compatta. Un'app usata in campo (schermo
+piccolo, guanti) attiva i bersagli da 48px con un attributo nell'`index.html`:
+
+```html
+<body data-density="touch">
+```
+
+Non serve altro: `components.css` contiene entrambe le densità.
+
+### Tenere la regola nel tempo
+
+La regola "solo variabili" si verifica in CI con la config condivisa. In
+`frontend/.stylelintrc.cjs`:
+
+```js
+module.exports = {
+  extends: '@tassullo/theme/stylelint-config',
+  ignoreFiles: ['dist/**', 'node_modules/**'],
+}
+```
+
+più uno script `lint:css` che lancia `stylelint` sui CSS di `src/`, e uno step
+che lo esegue nel workflow di test. Serve solo `stylelint` come devDependency:
+nessun plugin.
 
 ## Aggiornare lo stile (propagazione)
 
@@ -61,4 +97,6 @@ Tutto il resto (superfici, tipografia, componenti) segue automaticamente.
 
 ## App collegate
 
-- **Studio Tassullo (SuperTM)** — `frontend/` importa il tema da questo pacchetto.
+- **Studio Tassullo (SuperTM)** — github.com/tassullo/studio, `frontend/`.
+- **Officina** — github.com/tassullo/officina, `frontend/`. Usa
+  `data-density="touch"`: è l'app di campo.
