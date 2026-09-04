@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   TASSULLO DESIGN SYSTEM — components.css (v1.2.0)
+   TASSULLO DESIGN SYSTEM — components.css (v1.2.1)
    Layer dei componenti ricorrenti, costruito SOLO sui token di
    theme.css. È la seconda metà della fonte unica: theme.css dice
    "di che colore", questo file dice "che forma ha un bottone".
@@ -118,6 +118,14 @@
 .chip:hover {
   border-color: var(--color-accent);
 }
+/* Taglia da scrivania, l'analogo di .btn-sm: il bersaglio è un mouse.
+   Sta qui e non nelle app perché ognuna la stava riscrivendo. */
+.chip-sm {
+  min-height: 28px;
+  padding: 4px 12px;
+  font-size: var(--text-sm);
+}
+
 /* Nome canonico dello stato attivo: .is-active (styleguide + Studio).
    .active è un ALIAS TRANSITORIO per non imporre a Officina una
    rinomina di 54 punti: da rimuovere quando Officina è migrata. */
@@ -343,27 +351,41 @@
    Per le app usate in campo (Officina): bersagli >=48px, "usabile
    coi guanti". Le app desktop dense (Studio) non mettono l'attributo
    e restano sulle taglie compatte qui sopra.
+
+   L'attributo sta dentro :where() apposta: così queste regole pesano
+   quanto .btn/.chip/.input (una classe) invece che una classe più un
+   attributo. Senza, avrebbero schiacciato ogni variante d'app
+   costruita sopra la classe condivisa — una .chip-sm da 28px sarebbe
+   tornata a 40px senza che nessuno capisse perché, ed è proprio il
+   pattern che la guida raccomanda. Valgono comunque sulle regole
+   base perché vengono dopo nel file; il CSS dell'app, che si carica
+   dopo il pacchetto, vince su entrambe.
    ════════════════════════════════════════════════════════════════ */
-[data-density="touch"] .btn {
+:where([data-density="touch"]) .btn {
   min-height: 48px;
   padding: 12px 18px;
   font-size: var(--text-base);
 }
-[data-density="touch"] .btn-lg {
+:where([data-density="touch"]) .btn-lg {
   min-height: 56px;
   font-size: var(--text-lg);
 }
 /* .btn-sm resta compatto anche in touch: è la taglia da riga di
    tabella delle pagine di gestione, dove il bersaglio è un mouse. */
-[data-density="touch"] .btn-sm {
+:where([data-density="touch"]) .btn-sm {
   min-height: 34px;
   padding: 6px 12px;
   font-size: var(--text-md);
 }
-[data-density="touch"] .chip {
+:where([data-density="touch"]) .chip {
   min-height: 40px;
   padding: 8px 16px;
 }
-[data-density="touch"] .input {
+/* .chip-sm, come .btn-sm, resta compatta: vive nelle liste da scrivania. */
+:where([data-density="touch"]) .chip-sm {
+  min-height: 28px;
+  padding: 4px 12px;
+}
+:where([data-density="touch"]) .input {
   min-height: 44px;
 }
