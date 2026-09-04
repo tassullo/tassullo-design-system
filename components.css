@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   TASSULLO DESIGN SYSTEM — components.css (v1.2.2)
+   TASSULLO DESIGN SYSTEM — components.css (v1.3.0)
    Layer dei componenti ricorrenti, costruito SOLO sui token di
    theme.css. È la seconda metà della fonte unica: theme.css dice
    "di che colore", questo file dice "che forma ha un bottone".
@@ -85,6 +85,34 @@
   background: var(--color-danger-hover);
 }
 
+/* Azione terziaria: nessun fondo, nessun bordo. Senza questa ricetta ogni
+   pagina si inventava il proprio "ghost" — in Studio ce n'erano 7. */
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid transparent;
+}
+.btn-ghost:not(:disabled):hover {
+  background: var(--color-surface-3);
+}
+
+/* Bottone di sola icona, quadrato: chiusure di modale, menu di riga.
+   Serve un'etichetta accessibile (aria-label): senza testo visibile
+   lo screen reader non ha altro da leggere. */
+.btn-icon {
+  padding: 0;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid transparent;
+}
+.btn-icon:not(:disabled):hover {
+  background: var(--color-surface-3);
+  color: var(--color-text);
+}
+
 .btn-block {
   display: flex;
   width: 100%;
@@ -163,6 +191,30 @@
   color: var(--color-text);
 }
 
+/* ── Link testuale ──────────────────────────────────────────── */
+/* Vale sia per <a> sia per un <button> che deve leggersi come link.
+   Il colore è --color-accent-ink e NON --color-accent: l'arancio del
+   brand come testo su fondo chiaro sta sotto 2:1 di contrasto. In Studio
+   c'erano ~25 varianti locali di questo pattern e nove fallivano il
+   contrasto proprio per quel motivo. */
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-accent-ink);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link:hover {
+  color: var(--color-accent-hover);
+}
+.link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
 /* ── Badge di stato ─────────────────────────────────────────── */
 .badge {
   display: inline-block;
@@ -237,7 +289,13 @@
   padding: var(--space-4);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
-.card:hover {
+/* L'hover NON sta sulla card base: la maggior parte delle card è un
+   contenitore statico e un rilievo al passaggio del mouse promette un
+   click che non esiste. Lo prende solo chi è davvero cliccabile. */
+.card-clickable {
+  cursor: pointer;
+}
+.card-clickable:hover {
   border-color: var(--color-accent);
   box-shadow: var(--shadow-md);
 }

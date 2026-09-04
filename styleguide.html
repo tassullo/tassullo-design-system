@@ -222,6 +222,8 @@
   .tds { color: var(--color-text); }
   .tds .card { max-width: 270px; cursor: pointer; }
   .tds .input { max-width: 340px; }
+  /* nello stage flex i link si comprimerebbero a colonna */
+  .tds .link { flex: none; }
 
   /* Sidebar della demo: .sidebar e .sidebar-item vengono da
      components.css, questi sono il contorno (logo, brand, CTA)
@@ -377,9 +379,23 @@
         <button class="btn btn-primary">+ Nuova chat</button>
         <button class="btn btn-secondary">Esporta XLSX</button>
         <button class="btn btn-danger">Elimina</button>
+        <button class="btn btn-ghost">Annulla</button>
+        <button class="btn btn-icon" aria-label="Chiudi">&times;</button>
         <button class="btn btn-primary" disabled>Disabilitato</button>
       </div>
-      <p class="uses"><code>.btn</code> <code>.btn-primary</code> <code>.btn-secondary</code> <code>.btn-danger</code> <code>.btn-sm</code> <code>.btn-lg</code> <code>.btn-block</code> — in <code>components.css</code></p>
+      <p class="uses"><code>.btn</code> <code>.btn-primary</code> <code>.btn-secondary</code> <code>.btn-danger</code> <code>.btn-ghost</code> <code>.btn-icon</code> <code>.btn-sm</code> <code>.btn-lg</code> <code>.btn-block</code> — in <code>components.css</code></p>
+    </div>
+
+    <h3>Link testuale</h3>
+    <div class="demo-block">
+      <div class="demo-stage tds">
+        <a class="link" href="#componenti">Scheda tecnica del sistema</a>
+        <button class="link" type="button">Mostra tutte le varianti</button>
+      </div>
+      <p class="uses"><code>.link</code> — in <code>components.css</code>. Vale anche per un
+      <code>&lt;button&gt;</code> che deve leggersi come link. Usa
+      <code>--color-accent-ink</code>: l'arancio del brand come <em>testo</em> su fondo chiaro
+      non regge il contrasto.</p>
     </div>
 
     <h3>Chip di filtro</h3>
@@ -408,20 +424,22 @@
     <h3>Card (pattern catalogo)</h3>
     <div class="demo-block">
       <div class="demo-stage tds">
-        <div class="card">
+        <div class="card card-clickable">
           <div class="card-code">ST042</div>
           <div class="card-name">Risanamento muratura umida</div>
           <div class="card-sub">Variante intonaco macroporoso</div>
           <div class="card-meta"><span>6 famiglie</span><span>Rev 03</span></div>
         </div>
-        <div class="card">
+        <div class="card card-clickable">
           <div class="card-code">ST118</div>
           <div class="card-name">Consolidamento FRCM</div>
           <div class="card-sub">Rete in basalto + matrice</div>
           <div class="card-meta"><span>4 famiglie</span><span>Rev 01</span></div>
         </div>
       </div>
-      <p class="uses"><code>.card</code> <code>.card-code</code> <code>.card-name</code> <code>.card-sub</code> <code>.card-meta</code> — in <code>components.css</code></p>
+      <p class="uses"><code>.card</code> <code>.card-clickable</code> <code>.card-code</code> <code>.card-name</code> <code>.card-sub</code> <code>.card-meta</code> — in <code>components.css</code>.
+      La card base è statica: l'evidenziazione al passaggio del mouse la aggiunge
+      <code>.card-clickable</code>, e solo dove il click esiste davvero.</p>
     </div>
 
     <h3>Input</h3>

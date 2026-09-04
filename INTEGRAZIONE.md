@@ -93,8 +93,13 @@ non solo al setup:
   congela la palette vecchia.
 - Nuovi token si aggiungono SOLO nel repo tassullo-design-system, mai qui.
 - Per i componenti ricorrenti usare le classi di `components.css`
-  (`.btn`, `.chip`, `.badge`, `.card`, `.input`, `.alert`, `.table`,
-  `.sidebar`, `.skel`): non riscriverle e non copiarle in un CSS di pagina.
+  (`.btn`, `.chip`, `.badge`, `.card`, `.input`, `.link`, `.alert`,
+  `.table`, `.sidebar`, `.skel`): non riscriverle e non copiarle in un
+  CSS di pagina.
+- Il nome dice la funzione, non l'aspetto: `.badge` è un'etichetta che si
+  legge, `.chip` è un filtro che si clicca. Chiamare "chip" o "pill" una
+  targhetta statica è il modo più veloce per ritrovarsi a riscriverla —
+  in Studio è successo 23 volte.
   Se serve una variante che il pacchetto non ha, costruirla SOPRA la classe
   condivisa, non al posto suo.
 - `npm run lint:css` deve passare: è la regola qui sopra resa eseguibile.
