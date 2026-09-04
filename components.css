@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   TASSULLO DESIGN SYSTEM — components.css (v1.2.1)
+   TASSULLO DESIGN SYSTEM — components.css (v1.2.2)
    Layer dei componenti ricorrenti, costruito SOLO sui token di
    theme.css. È la seconda metà della fonte unica: theme.css dice
    "di che colore", questo file dice "che forma ha un bottone".
@@ -79,7 +79,7 @@
 
 .btn-danger {
   background: var(--color-danger);
-  color: var(--color-on-danger);
+  color: var(--color-on-dark);
 }
 .btn-danger:not(:disabled):hover {
   background: var(--color-danger-hover);

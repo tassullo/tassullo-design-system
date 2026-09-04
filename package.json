@@ -1,6 +1,6 @@
 {
   "name": "@tassullo/theme",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Design system Tassullo: design token CSS condivisi tra le app dello studio, allineati al sito istituzionale tassullo.it",
   "style": "theme.css",
   "exports": {

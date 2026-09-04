@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   TASSULLO DESIGN SYSTEM — theme.css (v1.2.1)
+   TASSULLO DESIGN SYSTEM — theme.css (v1.2.2)
    FONTE UNICA dei design token dello stile Tassullo, condivisa
    tra le app dello studio come pacchetto npm (@tassullo/theme,
    repo github.com/tassullo/tassullo-design-system).
@@ -7,6 +7,7 @@
    v1.1.0: palette allineata al sito istituzionale tassullo.it —
    arancio brand #F4AC3D con testo scuro, neutri caldi, nero #141414,
    verde #1CAC7C, raggi più asciutti, stack font con Replicall.
+   v1.2.2: aggiunto --color-on-dark (--color-on-danger ne è un alias).
    v1.2.0: aggiunti --color-on-danger e --color-overlay; i COMPONENTI escono dal testo
    della style guide e diventano CSS importabile: components.css.
 
@@ -27,6 +28,13 @@
   --color-accent-ink:    #B45309;  /* accento leggibile come TESTO su fondo chiaro (link) */
   --color-accent-light:  #FCF0DB;  /* sfondo tenue accento (chip attivi, focus ring) */
   --color-accent-border: #F5D9A8;  /* bordo tenue accento */
+
+  /* ── Testo sopra fondi pieni ────────────────────────────────── */
+  /* Su ARANCIO si usa --color-accent-text (nero): il bianco su #F4AC3D
+     non regge il contrasto ed è la violazione più frequente della v1.1.0.
+     --color-on-dark vale per i fondi scuri o saturi pieni: nero della
+     sidebar, rosso danger, verde success, blu di dominio. */
+  --color-on-dark:        #FFFFFF;
 
   /* ── Superfici e testo (neutri caldi come tassullo.it) ──────── */
   --color-page-bg:    #F6F6F4;     /* sfondo pagina (=--grey-background del sito) */
@@ -58,7 +66,7 @@
   --color-danger-text:    #991B1B;
   --color-danger-bg:      #FEF2F2;
   --color-danger-border:  #FCA5A5;
-  --color-on-danger:      #FFFFFF;  /* testo/icone SOPRA fondo --color-danger (bottoni distruttivi) */
+  --color-on-danger:      var(--color-on-dark); /* alias storico: testo sopra --color-danger */
   /* avviso */
   --color-warn-text:      #92400E;
   --color-warn-bg:        #FFF9EC;
